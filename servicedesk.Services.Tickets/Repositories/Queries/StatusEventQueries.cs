@@ -1,0 +1,37 @@
+using System;
+using System.Threading.Tasks;
+using System.Linq;
+using Coolector.Common.Extensions;
+using serviceDesk.Services.Tickets.Domain;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+
+namespace serviceDesk.Services.Tickets.Repositories.Queries
+{
+    /*
+    public static class StatusEventQueries
+    {
+        //public static IQueryable<StatusEvent> StatusEvents(this StatusDbContext database)
+        //    => database.StatusEvents.AsNoTracking().AsQueryable();
+
+        public static async Task<IEnumerable<StatusEvent>> GetByReferanceIdAsync(this IQueryable<StatusEvent> statusEvents, Guid id)
+        {
+            if (id.IsEmpty())
+                return null;
+
+            return await statusEvents.Include(x => x.Status).Where(x => x.ReferenceId == id).ToListAsync();
+        }
+        public static async Task<StatusEvent> GetCurrentByReferanceIdAsync(this IQueryable<StatusEvent> statusEvents, Guid id)
+        {
+            if (id.IsEmpty())
+                return null;
+
+            return await statusEvents
+                .Include(x => x.Status)
+                .Where(x => x.ReferenceId == id)
+                .Where(r => !r.IsUndo)
+                .OrderByDescending(r => r.Date)
+                .FirstOrDefaultAsync();
+        }
+    }*/
+}

@@ -1,0 +1,38 @@
+{
+  "name": "ServiceDesk.Services.Tickets.Shared",
+  "title": "ServiceDesk.Services.Tickets.Shared",
+  "authors": ["SergeyDushkin"],
+  "version": "1.0.0-1",
+  "packOptions": {
+    "projectUrl": "https://github.com/SergeyDushkin/ServiceDesk.Services.Tickets",
+    "packageType": "DotnetCliTool"
+  },
+  "buildOptions": {
+    "emitEntryPoint": false
+  },
+  "dependencies": {
+    "NETStandard.Library": "1.6.1",
+    "ServiceDesk.Common": "1.0.*"
+  },
+
+  /*
+  "frameworks": {
+    "netstandard1.6": {}
+  },
+  */
+  
+	"frameworks": {
+		"netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
+        }
+      },
+			"imports": [
+				"dotnet5.6",
+				"dnxcore50"
+			]
+		}
+	}
+}

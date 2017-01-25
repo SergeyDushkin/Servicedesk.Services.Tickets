@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0-*",
+  "title": "ServiceDesk.Services.Tickets",
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "Autofac": "4.3.0",
+    "AutoMapper": "5.2.0",
+    "Nancy": "2.0.0-barneyrubble",
+    "Microsoft.AspNetCore.Hosting": "1.1.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
+    "Microsoft.AspNetCore.Owin": "1.1.0",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
+    "Microsoft.Extensions.Configuration.Json": "1.1.0",
+    "Microsoft.EntityFrameworkCore": "1.1.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
+    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0",
+    "Exceptionless": "4.0.1924",
+    "NETStandard.Library": "1.6.1",
+    "Polly": "5.0.3",
+    
+    "NLog.Extensions.Logging": "1.0.0-*",
+    "NLog.Web.AspNetCore": "4.3.0",
+    
+    "RabbitMQ.Client": "4.1.1",
+		"RawRabbit": "1.10.3",
+		"RawRabbit.Extensions": "1.10.3",
+		"RawRabbit.Attributes": "1.10.3",
+		"RawRabbit.vNext": "1.10.3",
+    
+    "Coolector.Common": "1.0.*",
+
+    "ServiceDesk.Common": "1.0.*",
+    "ServiceDesk.Services.Tickets.Shared": "1.0.0-*"
+  },
+  
+
+	"frameworks": {
+		"netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
+        }
+      },
+			"imports": [
+				"dotnet5.6",
+				"dnxcore50"
+			]
+		}
+	},
+
+	"publishOptions": {
+		"include": [
+			"nlog.config",
+			"appsettings.json"
+		]
+	}
+}
