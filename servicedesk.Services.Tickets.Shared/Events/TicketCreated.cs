@@ -1,7 +1,8 @@
 using System;
 using servicedesk.Common.Events;
+using servicedesk.Services.Tickets.Shared.Commands;
 
-namespace servicedesk.Services.Tickets.Shared.Commands
+namespace servicedesk.Services.Tickets.Shared.Events
 {
     public class TicketCreated : IAuthenticatedEvent
     {
@@ -18,8 +19,17 @@ namespace servicedesk.Services.Tickets.Shared.Commands
             UserId = userId;
             ClientId = clientId;
             AddressId = addressId;
-            RequestDate = RequestDate;
+            RequestDate = requestDate;
             Description = description;
+        }
+        public TicketCreated(Guid requestId, CreateTicket ticket) 
+        {
+            RequestId = requestId;
+            UserId = ticket.UserId;
+            ClientId = ticket.ClientId;
+            AddressId = ticket.AddressId;
+            RequestDate = ticket.RequestDate;
+            Description = ticket.Description;
         }
     }
 }

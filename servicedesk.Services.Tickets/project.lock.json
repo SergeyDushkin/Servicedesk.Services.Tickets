@@ -1647,7 +1647,7 @@
           "lib/netstandard1.6/ServiceDesk.Common.dll": {}
         }
       },
-      "ServiceDesk.Services.Tickets.Shared/1.0.2": {
+      "ServiceDesk.Services.Tickets.Shared/1.0.3": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -5281,12 +5281,12 @@
         "lib/netstandard1.6/ServiceDesk.Common.dll"
       ]
     },
-    "ServiceDesk.Services.Tickets.Shared/1.0.2": {
-      "sha512": "XQqLsk/tt3D2Z0YW5Lj3eBRgFQ6pm1JCw2a3Hmr6odc5NLQhCiZbPw+UzA1wKLbTGFdeVq+Pf1t/E3WqjuAM4Q==",
+    "ServiceDesk.Services.Tickets.Shared/1.0.3": {
+      "sha512": "12TB9p+0QQucRbgEkmrMbrBy39fI1tu/TuuVZl+u1snRSnaTngzm57ttP/VMAHr3RalcMAGnpBO7e6vDiYXuUA==",
       "type": "package",
-      "path": "ServiceDesk.Services.Tickets.Shared/1.0.2",
+      "path": "ServiceDesk.Services.Tickets.Shared/1.0.3",
       "files": [
-        "ServiceDesk.Services.Tickets.Shared.1.0.2.nupkg.sha512",
+        "ServiceDesk.Services.Tickets.Shared.1.0.3.nupkg.sha512",
         "ServiceDesk.Services.Tickets.Shared.nuspec",
         "lib/netstandard1.6/ServiceDesk.Services.Tickets.Shared.dll"
       ]

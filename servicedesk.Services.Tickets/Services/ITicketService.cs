@@ -9,6 +9,6 @@ namespace servicedesk.Services.Tickets.Services
     {
         Task<IEnumerable<Ticket>> GetAsync();
         Task<Ticket> GetByIdAsync(Guid id);
-        Task CreateAsync(Guid userId, Guid clientId, Guid addressId, DateTimeOffset requestDate, string description);
+        Task CreateAsync(string userId, Guid clientId, Guid addressId, DateTimeOffset requestDate, string description);
     }
 }

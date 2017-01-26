@@ -1,7 +1,7 @@
 using System;
 using servicedesk.Common.Events;
 
-namespace servicedesk.Services.Tickets.Shared.Commands
+namespace servicedesk.Services.Tickets.Shared.Events
 {
     public class CreateTicketRejected  : IRejectedEvent
     {

@@ -8,7 +8,7 @@ namespace servicedesk.Services.Tickets.Domain
         public string TicketNumber { get; set; }
         public Guid ClientId { get; set; }
         public Guid AddressId { get; set; }
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         
         public string Description { get; set; }
         public DateTimeOffset RequestDate { get; set; }
@@ -16,7 +16,6 @@ namespace servicedesk.Services.Tickets.Domain
 
         public Client Client { get; set; }
         public Address Address { get; set; }
-        public User User { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

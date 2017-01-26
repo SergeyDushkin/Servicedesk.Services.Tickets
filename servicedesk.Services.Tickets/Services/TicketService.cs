@@ -15,7 +15,7 @@ namespace servicedesk.Services.Tickets.Services
             _ticketRepository = ticketRepository;
         }
 
-        public Task CreateAsync(Guid userId, Guid clientId, Guid addressId, DateTimeOffset requestDate, string description)
+        public Task CreateAsync(string userId, Guid clientId, Guid addressId, DateTimeOffset requestDate, string description)
         {
             var ticket = new Ticket
             {
