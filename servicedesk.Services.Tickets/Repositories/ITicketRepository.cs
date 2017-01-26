@@ -1,6 +1,6 @@
-using serviceDesk.Services.Tickets.Domain;
+using servicedesk.Services.Tickets.Domain;
 
-namespace serviceDesk.Services.Tickets.Repositories
+namespace servicedesk.Services.Tickets.Repositories
 {
     public interface ITicketRepository : IBaseRepository<Ticket>
     {

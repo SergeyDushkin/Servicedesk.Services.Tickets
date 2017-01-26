@@ -10,9 +10,9 @@ using Coolector.Common.Extensions;
 using Coolector.Common.Exceptionless;
 using servicedesk.Common.Commands;
 using servicedesk.Common.Events;
-using serviceDesk.Services.Tickets.Repositories;
-using serviceDesk.Services.Tickets.Services;
-using serviceDesk.Services.Tickets.Dal;
+using servicedesk.Services.Tickets.Repositories;
+using servicedesk.Services.Tickets.Services;
+using servicedesk.Services.Tickets.Dal;
 using Microsoft.EntityFrameworkCore;
 using Nancy.Configuration;
 using Polly;
@@ -26,7 +26,7 @@ using RawRabbit;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
 
-namespace serviceDesk.Services.Tickets.Framework
+namespace servicedesk.Services.Tickets.Framework
 {
     public class Bootstrapper : AutofacNancyBootstrapper
     {
@@ -127,7 +127,7 @@ namespace serviceDesk.Services.Tickets.Framework
                     "Authorization, Origin, X-Requested-With, Content-Type, Accept");
             };
             _exceptionHandler = container.Resolve<IExceptionHandler>();
-            Logger.Info("serviceDesk.Services.Tickets API has started.");
+            Logger.Info("servicedesk.Services.Tickets API has started.");
         }
     }
 }

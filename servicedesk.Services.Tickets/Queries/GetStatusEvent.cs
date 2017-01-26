@@ -1,7 +1,7 @@
 using System;
 using Coolector.Common.Queries;
 
-namespace serviceDesk.Services.Tickets.Queries
+namespace servicedesk.Services.Tickets.Queries
 {
     public class GetStatusEvent : IQuery
     {

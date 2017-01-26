@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using serviceDesk.Services.Tickets.Domain;
+using servicedesk.Services.Tickets.Domain;
 
-namespace serviceDesk.Services.Tickets.Services
+namespace servicedesk.Services.Tickets.Services
 {
     public interface ITicketService
     {

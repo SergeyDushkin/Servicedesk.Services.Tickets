@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using serviceDesk.Services.Tickets.Domain;
+using servicedesk.Services.Tickets.Domain;
 
-namespace serviceDesk.Services.Tickets.Dal
+namespace servicedesk.Services.Tickets.Dal
 {
     public class TicketDbContext : DbContext
     {

@@ -1647,6 +1647,19 @@
           "lib/netstandard1.6/ServiceDesk.Common.dll": {}
         }
       },
+      "ServiceDesk.Services.Tickets.Shared/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "ServiceDesk.Common": "1.0.15"
+        },
+        "compile": {
+          "lib/netstandard1.6/ServiceDesk.Services.Tickets.Shared.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/ServiceDesk.Services.Tickets.Shared.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -5266,6 +5279,16 @@
         "ServiceDesk.Common.1.0.15.nupkg.sha512",
         "ServiceDesk.Common.nuspec",
         "lib/netstandard1.6/ServiceDesk.Common.dll"
+      ]
+    },
+    "ServiceDesk.Services.Tickets.Shared/1.0.2": {
+      "sha512": "XQqLsk/tt3D2Z0YW5Lj3eBRgFQ6pm1JCw2a3Hmr6odc5NLQhCiZbPw+UzA1wKLbTGFdeVq+Pf1t/E3WqjuAM4Q==",
+      "type": "package",
+      "path": "ServiceDesk.Services.Tickets.Shared/1.0.2",
+      "files": [
+        "ServiceDesk.Services.Tickets.Shared.1.0.2.nupkg.sha512",
+        "ServiceDesk.Services.Tickets.Shared.nuspec",
+        "lib/netstandard1.6/ServiceDesk.Services.Tickets.Shared.dll"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -10319,7 +10342,7 @@
       "RawRabbit.Extensions >= 1.10.3",
       "RawRabbit.vNext >= 1.10.3",
       "ServiceDesk.Common >= 1.0.*",
-      "ServiceDesk.Services.Tickets.Shared >= 1.0.0-*"
+      "ServiceDesk.Services.Tickets.Shared >= 1.0.*"
     ],
     ".NETCoreApp,Version=v1.1": [
       "Microsoft.NETCore.App >= 1.1.0"

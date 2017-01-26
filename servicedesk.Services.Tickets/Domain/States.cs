@@ -1,4 +1,4 @@
-namespace serviceDesk.Services.Tickets.Domain
+namespace servicedesk.Services.Tickets.Domain
 {
     public static class States
     {

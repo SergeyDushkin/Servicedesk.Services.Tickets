@@ -1,8 +1,8 @@
 ﻿using servicedesk.Common.Commands;
 using servicedesk.Common.Host;
-using serviceDesk.Services.Tickets.Framework;
+using servicedesk.Services.Tickets.Framework;
 
-namespace serviceDesk.Services.Tickets
+namespace servicedesk.Services.Tickets
 {
     public class Program
     {
@@ -12,7 +12,7 @@ namespace serviceDesk.Services.Tickets
                 .Create<Startup>(port: 10020)
                 .UseAutofac(Bootstrapper.LifeTimeScope)
                 .UseRabbitMq()
-                .SubscribeToCommand<SetStatus>(exchangeName: "serviceDesk.Services.Tickets.commands", routingKey : "ticket.create")
+                .SubscribeToCommand<SetStatus>(exchangeName: "servicedesk.Services.Tickets.commands", routingKey : "ticket.create")
                 .Build()
                 .Run();
         }

@@ -1,7 +1,7 @@
 using AutoMapper;
 using Coolector.Common.Nancy;
 
-namespace serviceDesk.Services.Tickets.Modules
+namespace servicedesk.Services.Tickets.Modules
 {
     public abstract class ModuleBase : ApiModuleBase
     {

@@ -3,9 +3,10 @@ using Coolector.Common.Services;
 using RawRabbit;
 using servicedesk.Common.Commands;
 using servicedesk.Common.Events;
-using serviceDesk.Services.Tickets.Services;
+using servicedesk.Services.Tickets.Services;
+using servicedesk.Services.Tickets.Shared.Commands;
 
-namespace serviceDesk.Services.Tickets.Handlers
+namespace servicedesk.Services.Tickets.Handlers
 {
     public class SetStatusHandler : ICommandHandler<CreateTicket>
     {
@@ -29,18 +30,18 @@ namespace serviceDesk.Services.Tickets.Handlers
                 .OnSuccess(async () => await _bus.PublishAsync(
                     new NextStatusSet(command.Request.Id, command.SourceId, command.ReferenceId, command.StatusId), 
                     command.Request.Id, 
-                    cfg => cfg.WithExchange(e => e.WithName("serviceDesk.Services.Tickets.events")).WithRoutingKey("nextstatusset")))
+                    cfg => cfg.WithExchange(e => e.WithName("servicedesk.Services.Tickets.events")).WithRoutingKey("nextstatusset")))
                 .OnCustomError(async (ex, logger) => await _bus.PublishAsync(
                     new SetNewStatusRejected(command.Request.Id, "error", "Error when trying to set new status."), 
                     command.Request.Id, 
-                    cfg => cfg.WithExchange(e => e.WithName("serviceDesk.Services.Tickets.events")).WithRoutingKey("setnewstatusrejected")))
+                    cfg => cfg.WithExchange(e => e.WithName("servicedesk.Services.Tickets.events")).WithRoutingKey("setnewstatusrejected")))
                 .OnError(async (ex, logger) => 
                 {
                     logger.Error(ex, "Error when trying to set new status.");
                     await _bus.PublishAsync(
                         new SetNewStatusRejected(command.Request.Id, "error", "Error when trying to set new status."), 
                         command.Request.Id, 
-                        cfg => cfg.WithExchange(e => e.WithName("serviceDesk.Services.Tickets.events")).WithRoutingKey("setnewstatusrejected"));
+                        cfg => cfg.WithExchange(e => e.WithName("servicedesk.Services.Tickets.events")).WithRoutingKey("setnewstatusrejected"));
                 })
                 .ExecuteAsync();
         }

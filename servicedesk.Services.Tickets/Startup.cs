@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Nancy.Owin;
 using NLog.Extensions.Logging;
-using serviceDesk.Services.Tickets.Framework;
+using servicedesk.Services.Tickets.Framework;
 
-namespace serviceDesk.Services.Tickets
+namespace servicedesk.Services.Tickets
 {
     public class Startup
     {

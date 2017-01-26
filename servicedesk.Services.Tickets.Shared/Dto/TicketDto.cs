@@ -1,6 +1,6 @@
 using System;
 
-namespace serviceDesk.Services.Tickets.Shared.Dto
+namespace servicedesk.Services.Tickets.Shared.Dto
 {
     public class TicketDto
     {

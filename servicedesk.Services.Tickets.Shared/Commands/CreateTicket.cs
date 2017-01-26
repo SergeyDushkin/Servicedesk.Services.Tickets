@@ -1,7 +1,7 @@
 using System;
 using servicedesk.Common.Commands;
 
-namespace serviceDesk.Services.Tickets.Shared.Commands
+namespace servicedesk.Services.Tickets.Shared.Commands
 {
     public class CreateTicket : IAuthenticatedCommand
     {

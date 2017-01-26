@@ -34,7 +34,7 @@
     "Coolector.Common": "1.0.*",
 
     "ServiceDesk.Common": "1.0.*",
-    "ServiceDesk.Services.Tickets.Shared": "1.0.0-*"
+    "ServiceDesk.Services.Tickets.Shared": "1.0.*"
   },
   
 

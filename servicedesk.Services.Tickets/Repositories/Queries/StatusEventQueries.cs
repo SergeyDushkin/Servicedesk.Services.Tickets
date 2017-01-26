@@ -2,11 +2,11 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using Coolector.Common.Extensions;
-using serviceDesk.Services.Tickets.Domain;
+using servicedesk.Services.Tickets.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace serviceDesk.Services.Tickets.Repositories.Queries
+namespace servicedesk.Services.Tickets.Repositories.Queries
 {
     /*
     public static class StatusEventQueries

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using serviceDesk.Services.Tickets.Domain;
-using serviceDesk.Services.Tickets.Repositories;
+using servicedesk.Services.Tickets.Domain;
+using servicedesk.Services.Tickets.Repositories;
 
-namespace serviceDesk.Services.Tickets.Services
+namespace servicedesk.Services.Tickets.Services
 {
     public class TicketService : ITicketService
     {

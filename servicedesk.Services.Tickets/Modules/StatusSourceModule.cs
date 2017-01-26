@@ -1,11 +1,11 @@
 using AutoMapper;
 using Coolector.Common.Extensions;
-using serviceDesk.Services.Tickets.Domain;
-using serviceDesk.Services.Tickets.Dto;
-using serviceDesk.Services.Tickets.Queries;
-using serviceDesk.Services.Tickets.Services;
+using servicedesk.Services.Tickets.Domain;
+using servicedesk.Services.Tickets.Dto;
+using servicedesk.Services.Tickets.Queries;
+using servicedesk.Services.Tickets.Services;
 
-namespace serviceDesk.Services.Tickets.Modules
+namespace servicedesk.Services.Tickets.Modules
 {
     public class StatusSourceModule : ModuleBase
     {

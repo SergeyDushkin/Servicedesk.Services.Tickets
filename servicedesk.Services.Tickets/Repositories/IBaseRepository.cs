@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using servicedesk.Common.Domain;
 
-namespace serviceDesk.Services.Tickets.Repositories
+namespace servicedesk.Services.Tickets.Repositories
 {
     public interface IBaseRepository<T> where T : class, IIdentifiable, new()
     {

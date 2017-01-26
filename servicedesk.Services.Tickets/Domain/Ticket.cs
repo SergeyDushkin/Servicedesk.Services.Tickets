@@ -1,7 +1,7 @@
 using System;
 using servicedesk.Common.Domain;
 
-namespace serviceDesk.Services.Tickets.Domain
+namespace servicedesk.Services.Tickets.Domain
 {
     public class Ticket : IdentifiableEntity, ITimestampable
     {

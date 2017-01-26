@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using servicedesk.Common.Domain;
 
-namespace serviceDesk.Services.Tickets.Repositories
+namespace servicedesk.Services.Tickets.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class, IIdentifiable, new()
     {

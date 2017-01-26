@@ -1,7 +1,7 @@
-using serviceDesk.Services.Tickets.Dal;
-using serviceDesk.Services.Tickets.Domain;
+using servicedesk.Services.Tickets.Dal;
+using servicedesk.Services.Tickets.Domain;
 
-namespace serviceDesk.Services.Tickets.Repositories
+namespace servicedesk.Services.Tickets.Repositories
 {
     public class TicketRepository : BaseRepository<Ticket>, ITicketRepository
     {
