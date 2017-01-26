@@ -17,10 +17,8 @@ using Microsoft.EntityFrameworkCore;
 using Nancy.Configuration;
 using Polly;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
-using RabbitMQ.Client;
 using RabbitMQ.Client.Exceptions;
 using RawRabbit;
 using RawRabbit.Configuration;
@@ -74,16 +72,8 @@ namespace servicedesk.Services.Tickets.Framework
                 builder.RegisterInstance(_configuration.GetSettings<ExceptionlessSettings>()).SingleInstance();
                 builder.RegisterType<ExceptionlessExceptionHandler>().As<IExceptionHandler>().SingleInstance();
 
-                builder.RegisterType<StatusEventRepository>().As<IStatusEventRepository>();
-                builder.RegisterType<StatusEventService>().As<IStatusEventService>();
-
-                builder.RegisterType<StatusSourceRepository>().As<IStatusSourceRepository>();
-                builder.RegisterType<StatusSourceService>().As<IStatusSourceService>();
-
-                builder.RegisterType<StatusRepository>().As<IStatusRepository>();
-                builder.RegisterType<StatusService>().As<IStatusService>();
-
-                builder.RegisterType<StatusManager>().As<IStatusManager>();
+                builder.RegisterType<TicketRepository>().As<ITicketRepository>();
+                builder.RegisterType<TicketService>().As<ITicketService>();
                 
                 builder.RegisterType<Handler>().As<IHandler>();
 
@@ -115,9 +105,8 @@ namespace servicedesk.Services.Tickets.Framework
 
         protected override void ApplicationStartup(ILifetimeScope container, IPipelines pipelines)
         {
-            //var databaseSettings = container.Resolve<MongoDbSettings>();
-            //var databaseInitializer = container.Resolve<IDatabaseInitializer>();
-            //databaseInitializer.InitializeAsync();
+            /// Create Database
+            container.Resolve<TicketDbContext>().Database.EnsureCreated();
 
             pipelines.AfterRequest += (ctx) =>
             {

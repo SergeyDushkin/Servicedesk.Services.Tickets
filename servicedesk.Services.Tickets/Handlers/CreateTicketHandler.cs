@@ -4,6 +4,7 @@ using RawRabbit;
 using servicedesk.Common.Commands;
 using servicedesk.Services.Tickets.Services;
 using servicedesk.Services.Tickets.Shared.Commands;
+using servicedesk.Services.Tickets.Shared.Events;
 
 namespace servicedesk.Services.Tickets.Handlers
 {

@@ -3,7 +3,7 @@ using Coolector.Common.Queries;
 
 namespace servicedesk.Services.Tickets.Queries
 {
-    public class GetStatus : IQuery
+    public class GetTicket : IQuery
     {
         public Guid Id { get; set; }
     }

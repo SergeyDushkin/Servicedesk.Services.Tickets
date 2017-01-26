@@ -1,6 +1,6 @@
 using AutoMapper;
 using servicedesk.Services.Tickets.Domain;
-using servicedesk.Services.Tickets.Dto;
+using servicedesk.Services.Tickets.Shared.Dto;
 
 namespace servicedesk.Services.Tickets.Framework
 {
@@ -10,9 +10,11 @@ namespace servicedesk.Services.Tickets.Framework
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<StatusEvent, StatusEventDto>();
-                cfg.CreateMap<StatusSource, StatusSourceDto>();
-                cfg.CreateMap<Status, StatusDto>();
+                cfg.CreateMap<Address, AddressDto>();
+                cfg.CreateMap<Client, ClientDto>();
+                cfg.CreateMap<Contact, ContactDto>();
+                cfg.CreateMap<Ticket, TicketDto>();
+                cfg.CreateMap<User, UserDto>();
             });
 
             return config.CreateMapper();

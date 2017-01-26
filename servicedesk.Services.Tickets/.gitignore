@@ -68,3 +68,5 @@ testem.log
 # e2e
 /e2e/*.js
 /e2e/*.map
+
+project.lock.json
