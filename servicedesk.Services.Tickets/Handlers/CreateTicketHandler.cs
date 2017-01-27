@@ -14,9 +14,7 @@ namespace servicedesk.Services.Tickets.Handlers
         private readonly IBusClient _bus;
         private readonly ITicketService _ticketService;
 
-        public CreateTicketHandler(IHandler handler, 
-            IBusClient bus, 
-            ITicketService ticketService)
+        public CreateTicketHandler(IHandler handler, IBusClient bus, ITicketService ticketService)
         {
             _handler = handler;
             _bus = bus;

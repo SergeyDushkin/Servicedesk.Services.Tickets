@@ -13,6 +13,7 @@ using servicedesk.Common.Events;
 using servicedesk.Services.Tickets.Repositories;
 using servicedesk.Services.Tickets.Services;
 using servicedesk.Services.Tickets.Dal;
+using servicedesk.Services.Tickets.Domain;
 using Microsoft.EntityFrameworkCore;
 using Nancy.Configuration;
 using Polly;
@@ -74,7 +75,15 @@ namespace servicedesk.Services.Tickets.Framework
 
                 builder.RegisterType<TicketRepository>().As<ITicketRepository>();
                 builder.RegisterType<TicketService>().As<ITicketService>();
+
+                builder.RegisterType<BaseRepository<Address, TicketDbContext>>().As<IBaseRepository<Address>>();
+                builder.RegisterType<BaseRepository<Client, TicketDbContext>>().As<IBaseRepository<Client>>();
+                builder.RegisterType<BaseRepository<User, TicketDbContext>>().As<IBaseRepository<User>>();
                 
+                builder.RegisterType<BaseService<Address>>().As<IBaseService<Address>>();
+                builder.RegisterType<BaseService<Client>>().As<IBaseService<Client>>();
+                builder.RegisterType<BaseService<User>>().As<IBaseService<User>>();
+
                 builder.RegisterType<Handler>().As<IHandler>();
 
                 var rawRabbitConfiguration = _configuration.GetSettings<RawRabbitConfiguration>();

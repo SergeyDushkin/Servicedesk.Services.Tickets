@@ -8,11 +8,11 @@ using servicedesk.Common.Domain;
 
 namespace servicedesk.Services.Tickets.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class, IIdentifiable, new()
+    public class BaseRepository<T, DbContextType> : IBaseRepository<T> where T : class, IIdentifiable, new() where DbContextType : DbContext
     {
-        private DbContext _context;
+        private DbContextType _context;
     
-        public BaseRepository(DbContext context)
+        public BaseRepository(DbContextType context)
         {
             _context = context;
         }
