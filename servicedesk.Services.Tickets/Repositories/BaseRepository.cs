@@ -57,9 +57,9 @@ namespace servicedesk.Services.Tickets.Repositories
             return query.Where(predicate).FirstOrDefaultAsync();
         }
     
-        public virtual IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
+        public virtual async Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
         {
-            return _context.Set<T>().Where(predicate);
+            return await _context.Set<T>().Where(predicate).ToListAsync();
         }
     
         public virtual void Add(T entity)

@@ -6,7 +6,6 @@ using Nancy.Bootstrapper;
 using NLog;
 using Coolector.Common.Nancy;
 using Coolector.Common.Extensions;
-using Coolector.Common.Exceptionless;
 using servicedesk.Common.Commands;
 using servicedesk.Common.Events;
 using servicedesk.Services.Tickets.Repositories;
@@ -30,10 +29,12 @@ namespace servicedesk.Services.Tickets.Framework
     public class Bootstrapper : AutofacNancyBootstrapper
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        private static IExceptionHandler _exceptionHandler;
         private readonly IConfiguration _configuration;
 
         public static ILifetimeScope LifeTimeScope { get; private set; }
+
+        
+        //private static IExceptionHandler _exceptionHandler;
 
         public Bootstrapper(IConfiguration configuration)
         {
@@ -70,8 +71,9 @@ namespace servicedesk.Services.Tickets.Framework
                 builder.RegisterType<TicketDbContext>().WithParameter("options", optionsBuilder.Options).AsSelf();
 
                 builder.RegisterInstance(AutoMapperConfig.InitializeMapper());
-                builder.RegisterInstance(_configuration.GetSettings<ExceptionlessSettings>()).SingleInstance();
-                builder.RegisterType<ExceptionlessExceptionHandler>().As<IExceptionHandler>().SingleInstance();
+
+                //builder.RegisterInstance(_configuration.GetSettings<ExceptionlessSettings>()).SingleInstance();
+                //builder.RegisterType<ExceptionlessExceptionHandler>().As<IExceptionHandler>().SingleInstance();
 
                 builder.RegisterType<TicketRepository>().As<ITicketRepository>();
                 builder.RegisterType<TicketService>().As<ITicketService>();
@@ -80,9 +82,9 @@ namespace servicedesk.Services.Tickets.Framework
                 builder.RegisterType<BaseRepository<Client, TicketDbContext>>().As<IBaseRepository<Client>>();
                 builder.RegisterType<BaseRepository<User, TicketDbContext>>().As<IBaseRepository<User>>();
                 
-                //builder.RegisterType<BaseDependentlyService<Address>>().As<IBaseDependentlyService<Address>>();
-                //builder.RegisterType<BaseService<Client>>().As<IBaseService<Client>>();
-                //builder.RegisterType<BaseDependentlyService<User>>().As<IBaseDependentlyService<User>>();
+                builder.RegisterType<BaseDependentlyService<Address>>().As<IBaseDependentlyService<Address>>();
+                builder.RegisterType<BaseService<Client>>().As<IBaseService<Client>>();
+                builder.RegisterType<BaseDependentlyService<User>>().As<IBaseDependentlyService<User>>();
 
                 builder.RegisterType<Handler>().As<IHandler>();
 
@@ -97,8 +99,8 @@ namespace servicedesk.Services.Tickets.Framework
                 builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IEventHandler<>));
                 builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(ICommandHandler<>));
 
-                builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IBaseDependentlyService<>));
-                builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IBaseService<>));
+                //builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IBaseDependentlyService<>));
+                //builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IBaseService<>));
             });
 
             LifeTimeScope = container;
@@ -108,8 +110,8 @@ namespace servicedesk.Services.Tickets.Framework
         {
             pipelines.OnError.AddItemToEndOfPipeline((ctx, ex) =>
             {
-                _exceptionHandler.Handle(ex, ctx.ToExceptionData(),
-                    "Request details", "servicedesk", "Service", "Tickets");
+                //_exceptionHandler.Handle(ex, ctx.ToExceptionData(),
+                //    "Request details", "servicedesk", "Service", "Tickets");
 
                 return ctx.Response;
             });
@@ -127,8 +129,10 @@ namespace servicedesk.Services.Tickets.Framework
                 ctx.Response.Headers.Add("Access-Control-Allow-Headers",
                     "Authorization, Origin, X-Requested-With, Content-Type, Accept");
             };
-            _exceptionHandler = container.Resolve<IExceptionHandler>();
+
             Logger.Info("servicedesk.Services.Tickets API has started.");
+
+            //_exceptionHandler = container.Resolve<IExceptionHandler>();
         }
     }
 }

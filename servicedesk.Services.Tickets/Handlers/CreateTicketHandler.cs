@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Coolector.Common.Services;
 using RawRabbit;
 using servicedesk.Common.Commands;
+using servicedesk.Common.Services;
 using servicedesk.Services.Tickets.Services;
 using servicedesk.Services.Tickets.Shared.Commands;
 using servicedesk.Services.Tickets.Shared.Events;
