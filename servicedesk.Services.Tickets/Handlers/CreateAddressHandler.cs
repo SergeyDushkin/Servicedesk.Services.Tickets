@@ -25,9 +25,7 @@ namespace servicedesk.Services.Tickets.Handlers
         {
             var address = new Address {
                 Name = command.Name,
-                Contact = new Contact {
-                    Address = command.Address
-                }
+                FullAddress = command.Address
             };
 
             await handler

@@ -14,14 +14,11 @@ namespace servicedesk.Services.Tickets.Dal
             modelBuilder.Entity<Address>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Address>().ToTable("WH_ADDRESSES");
             modelBuilder.Entity<Address>().HasKey(r => r.Id);
+            modelBuilder.Entity<Address>().HasKey(r => r.Id);
 
             modelBuilder.Entity<Client>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Client>().ToTable("WH_CLIENTS");
             modelBuilder.Entity<Client>().HasKey(r => r.Id);
-
-            modelBuilder.Entity<Contact>().Property(p => p.Id).ValueGeneratedOnAdd();
-            modelBuilder.Entity<Contact>().ToTable("WH_CONTACTS");
-            modelBuilder.Entity<Contact>().HasKey(r => r.Id);
 
             modelBuilder.Entity<Ticket>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Ticket>().ToTable("WH_TICKETS");
@@ -36,7 +33,6 @@ namespace servicedesk.Services.Tickets.Dal
 
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<User> Users { get; set; }
     }

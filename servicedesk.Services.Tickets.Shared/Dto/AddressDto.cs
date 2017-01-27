@@ -6,6 +6,6 @@ namespace servicedesk.Services.Tickets.Shared.Dto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public ContactDto Contact { get; set; }
+        public string Address { get; set; }
     }
 }

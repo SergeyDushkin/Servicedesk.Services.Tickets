@@ -12,7 +12,6 @@ namespace servicedesk.Services.Tickets.Framework
             {
                 cfg.CreateMap<Address, AddressDto>();
                 cfg.CreateMap<Client, ClientDto>();
-                cfg.CreateMap<Contact, ContactDto>();
                 cfg.CreateMap<Ticket, TicketDto>();
                 cfg.CreateMap<User, UserDto>();
             });
