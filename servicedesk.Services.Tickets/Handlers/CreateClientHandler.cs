@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Coolector.Common.Services;
 using RawRabbit;
 using servicedesk.Common.Commands;
+using servicedesk.Common.Services;
 using servicedesk.Services.Tickets.Domain;
 using servicedesk.Services.Tickets.Services;
 using servicedesk.Services.Tickets.Shared.Commands;
@@ -29,7 +29,7 @@ namespace servicedesk.Services.Tickets.Handlers
 
             await handler
                 .Run(async () => await service.CreateAsync(client))
-                //.OnSuccess((logger) => logger.Error(ex, "New address created successfully"))
+                .OnSuccess((logger) => logger.Info("New client created successfully"))
                 .OnError((ex, logger) => logger.Error(ex, "Error when trying to create new client: " + ex.GetBaseException().Message))
                 .ExecuteAsync();
         }

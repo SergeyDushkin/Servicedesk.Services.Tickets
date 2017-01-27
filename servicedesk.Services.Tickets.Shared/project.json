@@ -2,7 +2,7 @@
   "name": "ServiceDesk.Services.Tickets.Shared",
   "title": "ServiceDesk.Services.Tickets.Shared",
   "authors": ["SergeyDushkin"],
-  "version": "1.0.9",
+  "version": "1.0.10",
   "packOptions": {
     "projectUrl": "https://github.com/SergeyDushkin/ServiceDesk.Services.Tickets",
     "packageType": "DotnetCliTool"

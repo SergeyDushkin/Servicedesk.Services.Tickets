@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Nancy;
 using Nancy.Bootstrapper;
 using NLog;
-using Coolector.Common.Services;
 using Coolector.Common.Nancy;
 using Coolector.Common.Extensions;
 using Coolector.Common.Exceptionless;
@@ -24,6 +23,7 @@ using RabbitMQ.Client.Exceptions;
 using RawRabbit;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
+using servicedesk.Common.Services;
 
 namespace servicedesk.Services.Tickets.Framework
 {
@@ -80,9 +80,9 @@ namespace servicedesk.Services.Tickets.Framework
                 builder.RegisterType<BaseRepository<Client, TicketDbContext>>().As<IBaseRepository<Client>>();
                 builder.RegisterType<BaseRepository<User, TicketDbContext>>().As<IBaseRepository<User>>();
                 
-                builder.RegisterType<BaseService<Address>>().As<IBaseService<Address>>();
-                builder.RegisterType<BaseService<Client>>().As<IBaseService<Client>>();
-                builder.RegisterType<BaseService<User>>().As<IBaseService<User>>();
+                //builder.RegisterType<BaseDependentlyService<Address>>().As<IBaseDependentlyService<Address>>();
+                //builder.RegisterType<BaseService<Client>>().As<IBaseService<Client>>();
+                //builder.RegisterType<BaseDependentlyService<User>>().As<IBaseDependentlyService<User>>();
 
                 builder.RegisterType<Handler>().As<IHandler>();
 
@@ -96,6 +96,9 @@ namespace servicedesk.Services.Tickets.Framework
                 var assembly = typeof(Startup).GetTypeInfo().Assembly;
                 builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IEventHandler<>));
                 builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(ICommandHandler<>));
+
+                builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IBaseDependentlyService<>));
+                builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IBaseService<>));
             });
 
             LifeTimeScope = container;

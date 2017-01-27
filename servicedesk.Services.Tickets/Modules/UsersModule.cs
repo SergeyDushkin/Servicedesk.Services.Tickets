@@ -9,11 +9,11 @@ namespace servicedesk.Services.Tickets.Modules
 {
     public class UsersModule : ModuleBase
     {
-        public UsersModule(IBaseService<User> service, IMapper mapper) 
+        public UsersModule(IBaseDependentlyService<User> service, IMapper mapper) 
             : base(mapper, "users")
         {
-            Get("", args => FetchCollection<BrowseAll, User>
-                (async x => (await service.GetAsync()).PaginateWithoutLimit())
+            Get("", args => FetchCollection<SearchByReferenceId, User>
+                (async x => (await service.GetByReferenceIdAsync(x.ReferenceId)).PaginateWithoutLimit())
                 .MapTo<UserDto>()
                 .HandleAsync());
 

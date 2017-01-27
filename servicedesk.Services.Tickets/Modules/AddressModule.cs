@@ -9,11 +9,11 @@ namespace servicedesk.Services.Tickets.Modules
 {
     public class AddressModule : ModuleBase
     {
-        public AddressModule(IBaseService<Address> service, IMapper mapper) 
+        public AddressModule(IBaseDependentlyService<Address> service, IMapper mapper) 
             : base(mapper, "addresses")
         {
-            Get("", args => FetchCollection<BrowseAll, Address>
-                (async x => (await service.GetAsync()).PaginateWithoutLimit())
+            Get("", args => FetchCollection<SearchByReferenceId, Address>
+                (async x => (await service.GetByReferenceIdAsync(x.ReferenceId)).PaginateWithoutLimit())
                 .MapTo<AddressDto>()
                 .HandleAsync());
 

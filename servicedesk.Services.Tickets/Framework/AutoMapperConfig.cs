@@ -10,7 +10,7 @@ namespace servicedesk.Services.Tickets.Framework
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Address, AddressDto>();
+                cfg.CreateMap<Address, AddressDto>().ForMember(dst => dst.Address, opt => opt.MapFrom(src => src.FullAddress));
                 cfg.CreateMap<Client, ClientDto>();
                 cfg.CreateMap<Ticket, TicketDto>();
                 cfg.CreateMap<User, UserDto>();
