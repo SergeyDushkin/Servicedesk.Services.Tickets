@@ -25,10 +25,16 @@ namespace servicedesk.Services.Tickets.Handlers
         {
             await _handler
                 .Run(async () => await _ticketService.CreateAsync(command.UserId, command.ClientId, command.AddressId, command.RequestDate, command.Description))
-                .OnSuccess(async () => await _bus.PublishAsync(
-                    new TicketCreated(command.Request.Id, command),
-                    command.Request.Id, 
-                    cfg => cfg.WithExchange(e => e.WithName("servicedesk.Services.Tickets")).WithRoutingKey("ticket.created")))
+                .OnSuccess(async (logger) => 
+                {
+                    var @event = new TicketCreated(command.Request.Id, command);
+
+                    logger.Debug("New ticket created successfully");
+                    logger.Debug($"Publish event ticket_created: {Newtonsoft.Json.JsonConvert.SerializeObject(@event)}");
+                    
+                    await _bus.PublishAsync(@event, command.Request.Id, 
+                        cfg => cfg.WithExchange(e => e.WithName("servicedesk.Services.Tickets")).WithRoutingKey("ticket.created"));
+                })
                 .OnError(async (ex, logger) => 
                 {
                     logger.Error(ex, "Error when trying to create new ticket: " + ex.GetBaseException().Message);
