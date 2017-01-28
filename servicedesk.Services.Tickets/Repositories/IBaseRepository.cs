@@ -8,7 +8,7 @@ namespace servicedesk.Services.Tickets.Repositories
 {
     public interface IBaseRepository<T> where T : class, IIdentifiable, new()
     {
-        IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
+        Task<IEnumerable<T>> AllIncludingAsync(params Expression<Func<T, object>>[] includeProperties);
         Task<IEnumerable<T>> GetAllAsync();
         int Count();
         Task<T> GetSingleAsync(Guid id);

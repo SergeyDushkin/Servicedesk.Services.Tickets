@@ -14,7 +14,6 @@ namespace servicedesk.Services.Tickets.Dal
             modelBuilder.Entity<Address>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Address>().ToTable("WH_ADDRESSES");
             modelBuilder.Entity<Address>().HasKey(r => r.Id);
-            modelBuilder.Entity<Address>().HasKey(r => r.Id);
 
             modelBuilder.Entity<Client>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Client>().ToTable("WH_CLIENTS");

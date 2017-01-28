@@ -33,8 +33,8 @@ namespace servicedesk.Services.Tickets.Services
             return _ticketRepository.CommitAsync();
         }
 
-        public Task<IEnumerable<Ticket>> GetAsync() => _ticketRepository.GetAllAsync();
+        public Task<IEnumerable<Ticket>> GetAsync() => _ticketRepository.AllIncludingAsync(r => r.Address, f => f.Client);
 
-        public Task<Ticket> GetByIdAsync(Guid id) => _ticketRepository.GetSingleAsync(id);
+        public Task<Ticket> GetByIdAsync(Guid id) => _ticketRepository.GetSingleAsync(r => r.Id == id, f1 => f1.Address, f2 => f2.Client);
     }
 }
