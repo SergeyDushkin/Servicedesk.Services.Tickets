@@ -12,7 +12,7 @@ namespace servicedesk.Services.Tickets.Modules
         public ClientsModule(IBaseService<Client> service, IMapper mapper) 
             : base(mapper, "clients")
         {
-            Get("", args => FetchCollection<BrowseAll, Client>
+            Get("", args => FetchCollection<GetAll, Client>
                 (async x => (await service.GetAsync()).PaginateWithoutLimit())
                 .MapTo<ClientDto>()
                 .HandleAsync());

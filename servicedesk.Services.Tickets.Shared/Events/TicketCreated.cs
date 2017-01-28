@@ -13,6 +13,10 @@ namespace servicedesk.Services.Tickets.Shared.Events
         public DateTimeOffset RequestDate { get; }
         public string Description { get; }
 
+        public TicketCreated() 
+        {
+        }
+
         public TicketCreated(Guid requestId, string userId, Guid clientId, Guid addressId, DateTimeOffset requestDate, string description) 
         {
             RequestId = requestId;

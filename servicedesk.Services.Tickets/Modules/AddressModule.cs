@@ -12,7 +12,7 @@ namespace servicedesk.Services.Tickets.Modules
         public AddressModule(IBaseDependentlyService<Address> service, IMapper mapper) 
             : base(mapper, "addresses")
         {
-            Get("", args => FetchCollection<SearchByReferenceId, Address>
+            Get("", args => FetchCollection<GetByReferenceId, Address>
                 (async x => (await service.GetByReferenceIdAsync(x.ReferenceId)).PaginateWithoutLimit())
                 .MapTo<AddressDto>()
                 .HandleAsync());

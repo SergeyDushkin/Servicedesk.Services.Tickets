@@ -33,7 +33,6 @@ namespace servicedesk.Services.Tickets.Framework
 
         public static ILifetimeScope LifeTimeScope { get; private set; }
 
-        
         //private static IExceptionHandler _exceptionHandler;
 
         public Bootstrapper(IConfiguration configuration)
