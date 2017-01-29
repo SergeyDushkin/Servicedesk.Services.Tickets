@@ -5,10 +5,10 @@ namespace servicedesk.Services.Tickets.Shared.Events
 {
     public class CreateTicketRejected  : IRejectedEvent
     {
-        public Guid RequestId { get; }
-        public string UserId { get; }
-        public string Code { get; }
-        public string Reason { get; }
+        public Guid RequestId { get; set; }
+        public string UserId { get; set; }
+        public string Code { get; set; }
+        public string Reason { get; set; }
 
         public CreateTicketRejected() 
         {

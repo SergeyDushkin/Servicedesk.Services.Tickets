@@ -6,12 +6,12 @@ namespace servicedesk.Services.Tickets.Shared.Events
 {
     public class TicketCreated : IAuthenticatedEvent
     {
-        public Guid RequestId { get; }
-        public string UserId { get; }
-        public Guid ClientId { get; }
-        public Guid AddressId { get; }
-        public DateTimeOffset RequestDate { get; }
-        public string Description { get; }
+        public Guid RequestId { get; set; }
+        public string UserId { get; set; }
+        public Guid ClientId { get; set; }
+        public Guid AddressId { get; set; }
+        public DateTimeOffset RequestDate { get; set; }
+        public string Description { get; set; }
 
         public TicketCreated() 
         {
