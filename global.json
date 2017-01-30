@@ -1,0 +1,3 @@
+{
+    "projects":["servicedesk.Services.Tickets", "servicedesk.Services.Tickets.Shared"]
+}
