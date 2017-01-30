@@ -27,6 +27,10 @@ namespace servicedesk.Services.Tickets.Dal
             modelBuilder.Entity<User>().ToTable("WH_USERS");
             modelBuilder.Entity<User>().HasKey(r => r.Id);
 
+            modelBuilder.Entity<Job>().Property(p => p.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Job>().ToTable("WH_JOBS");
+            modelBuilder.Entity<Job>().HasKey(r => r.Id);
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -34,5 +38,6 @@ namespace servicedesk.Services.Tickets.Dal
         public DbSet<Client> Clients { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Job> Jobs { get; set; }
     }
 }

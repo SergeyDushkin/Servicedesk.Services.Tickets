@@ -80,10 +80,12 @@ namespace servicedesk.Services.Tickets.Framework
                 builder.RegisterType<BaseRepository<Address, TicketDbContext>>().As<IBaseRepository<Address>>();
                 builder.RegisterType<BaseRepository<Client, TicketDbContext>>().As<IBaseRepository<Client>>();
                 builder.RegisterType<BaseRepository<User, TicketDbContext>>().As<IBaseRepository<User>>();
-                
+                builder.RegisterType<BaseRepository<Job, TicketDbContext>>().As<IBaseRepository<Job>>();
+
                 builder.RegisterType<BaseDependentlyService<Address>>().As<IBaseDependentlyService<Address>>();
                 builder.RegisterType<BaseService<Client>>().As<IBaseService<Client>>();
                 builder.RegisterType<BaseDependentlyService<User>>().As<IBaseDependentlyService<User>>();
+                builder.RegisterType<BaseDependentlyService<Job>>().As<IBaseDependentlyService<Job>>();
 
                 builder.RegisterType<Handler>().As<IHandler>();
 

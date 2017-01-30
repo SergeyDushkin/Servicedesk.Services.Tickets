@@ -1,6 +1,8 @@
 using AutoMapper;
 using servicedesk.Services.Tickets.Domain;
+using servicedesk.Services.Tickets.Shared.Commands;
 using servicedesk.Services.Tickets.Shared.Dto;
+using servicedesk.Services.Tickets.Shared.Events;
 
 namespace servicedesk.Services.Tickets.Framework
 {
@@ -14,6 +16,9 @@ namespace servicedesk.Services.Tickets.Framework
                 cfg.CreateMap<Client, ClientDto>();
                 cfg.CreateMap<Ticket, TicketDto>();
                 cfg.CreateMap<User, UserDto>();
+                cfg.CreateMap<Job, JobDto>();
+                cfg.CreateMap<Job, JobCreated>();
+                cfg.CreateMap<CreateJob, Job>();
             });
 
             return config.CreateMapper();
