@@ -16,6 +16,7 @@ namespace servicedesk.Services.Tickets
                 .SubscribeToCommand<CreateAddress>(exchangeName: "servicedesk.Services.Tickets", routingKey : "address.create")
                 .SubscribeToCommand<CreateClient>(exchangeName: "servicedesk.Services.Tickets", routingKey : "client.create")
                 .SubscribeToCommand<CreateUser>(exchangeName: "servicedesk.Services.Tickets", routingKey : "user.create")
+                .SubscribeToCommand<CreateJob>(exchangeName: "servicedesk.Services.Tickets", routingKey : "ticket.job.create")
                 .Build()
                 .Run();
         }
