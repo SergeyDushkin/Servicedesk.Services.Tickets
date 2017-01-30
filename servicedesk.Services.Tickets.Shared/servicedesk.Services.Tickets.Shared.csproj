@@ -8,7 +8,20 @@
     <PackageProjectUrl>https://github.com/SergeyDushkin/ServiceDesk.Services.Tickets</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs" />
+    <Compile Include="Commands\CreateAddress.cs" />
+    <Compile Include="Commands\CreateClient.cs" />
+    <Compile Include="Commands\CreateJob.cs" />
+    <Compile Include="Commands\CreateTicket.cs" />
+    <Compile Include="Commands\CreateUser.cs" />
+    <Compile Include="Dto\AddressDto.cs" />
+    <Compile Include="Dto\ClientDto.cs" />
+    <Compile Include="Dto\JobDto.cs" />
+    <Compile Include="Dto\TicketDto.cs" />
+    <Compile Include="Dto\UserDto.cs" />
+    <Compile Include="Events\CreateTicketRejected.cs" />
+    <Compile Include="Events\JobCreated.cs" />
+    <Compile Include="Events\Rejected.cs" />
+    <Compile Include="Events\TicketCreated.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
