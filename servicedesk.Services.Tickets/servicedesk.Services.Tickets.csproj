@@ -1,0 +1,106 @@
+<Project Sdk="Microsoft.NET.Sdk.Web" ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <AssemblyTitle>ServiceDesk.Services.Tickets</AssemblyTitle>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <DebugType>portable</DebugType>
+    <AssemblyName>servicedesk.Services.Tickets</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">$(PackageTargetFallback);dotnet5.6;dnxcore50</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="nlog.config;appsettings.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="AutoMapper">
+      <Version>5.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Nancy">
+      <Version>2.0.0-barneyrubble</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Owin">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Exceptionless">
+      <Version>4.0.1924</Version>
+    </PackageReference>
+    <PackageReference Include="NETStandard.Library">
+      <Version>1.6.1</Version>
+    </PackageReference>
+    <PackageReference Include="Polly">
+      <Version>5.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="NLog.Extensions.Logging">
+      <Version>1.0.0-*</Version>
+    </PackageReference>
+    <PackageReference Include="NLog.Web.AspNetCore">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="RabbitMQ.Client">
+      <Version>4.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="RawRabbit">
+      <Version>1.10.3</Version>
+    </PackageReference>
+    <PackageReference Include="RawRabbit.Extensions">
+      <Version>1.10.3</Version>
+    </PackageReference>
+    <PackageReference Include="RawRabbit.Attributes">
+      <Version>1.10.3</Version>
+    </PackageReference>
+    <PackageReference Include="RawRabbit.vNext">
+      <Version>1.10.3</Version>
+    </PackageReference>
+    <PackageReference Include="Coolector.Common">
+      <Version>1.0.*</Version>
+    </PackageReference>
+    <PackageReference Include="ServiceDesk.Common">
+      <Version>1.0.*</Version>
+    </PackageReference>
+    <PackageReference Include="ServiceDesk.Services.Tickets.Shared">
+      <Version>1.0.*</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
+    <PackageReference Include="Microsoft.NETCore.App">
+      <Version>1.1.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+  </PropertyGroup>
+
+</Project>

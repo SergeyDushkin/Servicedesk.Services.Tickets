@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <AssemblyTitle>ServiceDesk.Services.Tickets.Shared</AssemblyTitle>
+    <VersionPrefix>1.0.13</VersionPrefix>
+    <Authors>SergeyDushkin</Authors>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>ServiceDesk.Services.Tickets.Shared</AssemblyName>
+    <PackageProjectUrl>https://github.com/SergeyDushkin/ServiceDesk.Services.Tickets</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="**\*.cs" />
+    <EmbeddedResource Include="**\*.resx" />
+    <EmbeddedResource Include="compiler\resources\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library">
+      <Version>1.6.1</Version>
+    </PackageReference>
+    <PackageReference Include="ServiceDesk.Common">
+      <Version>1.0.*</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+  </PropertyGroup>
+
+</Project>
