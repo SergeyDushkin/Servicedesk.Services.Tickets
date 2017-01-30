@@ -13,9 +13,6 @@
     <EmbeddedResource Include="compiler\resources\**\*" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NETStandard.Library">
-      <Version>1.6.1</Version>
-    </PackageReference>
     <PackageReference Include="ServiceDesk.Common">
       <Version>1.0.*</Version>
     </PackageReference>
