@@ -11,14 +11,14 @@
     <Compile Include="**\*.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="ServiceDesk.Common">
       <Version>1.0.*</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputType>library</OutputType>
   </PropertyGroup>
 </Project>
