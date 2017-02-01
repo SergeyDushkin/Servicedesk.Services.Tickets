@@ -5,10 +5,10 @@
     <DebugType>portable</DebugType>
     <AssemblyName>servicedesk.Services.Tickets</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">$(PackageTargetFallback);dotnet5.6;dnxcore50</PackageTargetFallback>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="nlog.config;appsettings.json">
+    <Content Include="appsettings.json">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
@@ -40,6 +40,12 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json">
       <Version>1.1.0</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug">
+      <Version>1.1.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore">
       <Version>1.1.0</Version>
     </PackageReference>
@@ -49,20 +55,11 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
       <Version>1.1.0</Version>
     </PackageReference>
-    <PackageReference Include="Exceptionless">
-      <Version>4.0.1924</Version>
-    </PackageReference>
     <PackageReference Include="NETStandard.Library">
       <Version>1.6.1</Version>
     </PackageReference>
     <PackageReference Include="Polly">
       <Version>5.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="NLog.Extensions.Logging">
-      <Version>1.0.0-*</Version>
-    </PackageReference>
-    <PackageReference Include="NLog.Web.AspNetCore">
-      <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="RabbitMQ.Client">
       <Version>4.1.1</Version>
@@ -78,6 +75,18 @@
     </PackageReference>
     <PackageReference Include="RawRabbit.vNext">
       <Version>1.10.3</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog">
+      <Version>2.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Settings.Configuration">
+      <Version>2.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Extensions.Logging">
+      <Version>1.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.ElasticSearch">
+      <Version>4.2.0</Version>
     </PackageReference>
     <PackageReference Include="Coolector.Common">
       <Version>1.0.*</Version>

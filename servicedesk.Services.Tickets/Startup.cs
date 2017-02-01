@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Nancy.Owin;
-using NLog.Extensions.Logging;
+using Serilog;
 using servicedesk.Services.Tickets.Framework;
 
 namespace servicedesk.Services.Tickets
@@ -27,9 +27,17 @@ namespace servicedesk.Services.Tickets
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddNLog();
+            var serilogLogger = new LoggerConfiguration()
+                .Enrich.WithProperty("Application","ServiceDesk.Services.Tickets")
+                .ReadFrom.Configuration(Configuration)
+                .CreateLogger();
 
-            app.UseOwin().UseNancy(x => x.Bootstrapper = new Bootstrapper(Configuration));
+            loggerFactory.AddSerilog(serilogLogger);
+            loggerFactory.AddConsole();
+
+            var logger = loggerFactory.CreateLogger("Bootstrapper");
+
+            app.UseOwin().UseNancy(x => x.Bootstrapper = new Bootstrapper(Configuration, logger));
         }
     }
 }

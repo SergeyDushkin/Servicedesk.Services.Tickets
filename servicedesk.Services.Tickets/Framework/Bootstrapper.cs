@@ -3,7 +3,6 @@ using Autofac;
 using Microsoft.Extensions.Configuration;
 using Nancy;
 using Nancy.Bootstrapper;
-using NLog;
 using Coolector.Common.Nancy;
 using Coolector.Common.Extensions;
 using servicedesk.Common.Commands;
@@ -23,21 +22,24 @@ using RawRabbit;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
 using servicedesk.Common.Services;
+using Microsoft.Extensions.Logging;
 
 namespace servicedesk.Services.Tickets.Framework
 {
     public class Bootstrapper : AutofacNancyBootstrapper
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private readonly ILogger logger;
+
         private readonly IConfiguration _configuration;
 
         public static ILifetimeScope LifeTimeScope { get; private set; }
 
         //private static IExceptionHandler _exceptionHandler;
 
-        public Bootstrapper(IConfiguration configuration)
+        public Bootstrapper(IConfiguration configuration, ILogger logger)
         {
-            _configuration = configuration;
+            this._configuration = configuration;
+            this.logger = logger;
         }
 
         public override void Configure(INancyEnvironment environment)
@@ -47,7 +49,7 @@ namespace servicedesk.Services.Tickets.Framework
 
         protected override void ConfigureApplicationContainer(ILifetimeScope container)
         {
-            Logger.Info("ServiceDesk.Services.Tickets Configuring application container");
+            logger.LogInformation("ServiceDesk.Services.Tickets Configuring application container");
 
             base.ConfigureApplicationContainer(container);
 
@@ -58,7 +60,7 @@ namespace servicedesk.Services.Tickets.Framework
                 .WaitAndRetry(5, retryAttempt =>
                     TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
                     (exception, timeSpan, retryCount, context) => {
-                        Logger.Error(exception, $"Cannot connect to RabbitMQ. retryCount:{retryCount}, duration:{timeSpan}");
+                        logger.LogError(new EventId(10001, "RabbitMQ Connect Error"), exception, $"Cannot connect to RabbitMQ. retryCount:{retryCount}, duration:{timeSpan}");
                     }
                 );
 
@@ -131,7 +133,7 @@ namespace servicedesk.Services.Tickets.Framework
                     "Authorization, Origin, X-Requested-With, Content-Type, Accept");
             };
 
-            Logger.Info("servicedesk.Services.Tickets API has started.");
+            logger.LogInformation("servicedesk.Services.Tickets API has started.");
 
             //_exceptionHandler = container.Resolve<IExceptionHandler>();
         }
