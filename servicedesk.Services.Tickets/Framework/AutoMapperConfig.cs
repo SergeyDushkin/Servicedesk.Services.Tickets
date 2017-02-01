@@ -12,10 +12,20 @@ namespace servicedesk.Services.Tickets.Framework
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Address, AddressDto>().ForMember(dst => dst.Address, opt => opt.MapFrom(src => src.FullAddress));
+                //cfg.CreateMap<Address, AddressDto>().ForMember(dst => dst.Address, opt => opt.MapFrom(src => src.FullAddress));
+                cfg.CreateMap<Address, AddressDto>();
+                cfg.CreateMap<BusinessUnit, BusinessUnitDto>();
+                cfg.CreateMap<Contract, ContractDto>();
+                cfg.CreateMap<Customer, CustomerDto>();
+                cfg.CreateMap<Service, ServiceDto>();
+                cfg.CreateMap<Supplier, SupplierDto>();
                 cfg.CreateMap<Ticket, TicketDto>();
+                cfg.CreateMap<TicketPriority, TicketPriorityDto>();
+                cfg.CreateMap<TicketStatus, TicketStatusDto>();
                 cfg.CreateMap<User, UserDto>();
-                //cfg.CreateMap<Job, JobDto>();
+                cfg.CreateMap<Work, WorkDto>();
+                cfg.CreateMap<WorkStatus, WorkStatusDto>();
+
                 //cfg.CreateMap<Job, JobCreated>();
                 //cfg.CreateMap<CreateJob, Job>();
             });
