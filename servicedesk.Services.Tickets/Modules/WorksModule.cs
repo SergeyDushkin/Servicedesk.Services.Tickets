@@ -7,17 +7,17 @@ using servicedesk.Services.Tickets.Shared.Dto;
 
 namespace servicedesk.Services.Tickets.Modules
 {
-    public class JobsModule : ModuleBase
+    public class WorksModule : ModuleBase
     {
-        public JobsModule(IBaseDependentlyService<Job> service, IMapper mapper) 
-            : base(mapper, "jobs")
+        public WorksModule(IBaseDependentlyService<Work> service, IMapper mapper) 
+            : base(mapper, "works")
         {
-            Get("", args => FetchCollection<GetByReferenceId, Job>
+            Get("", args => FetchCollection<GetByReferenceId, Work>
                 (async x => (await service.GetByReferenceIdAsync(x.ReferenceId)).PaginateWithoutLimit())
                 .MapTo<JobDto>()
                 .HandleAsync());
 
-            Get("{id:guid}", args => Fetch<GetById, Job>
+            Get("{id:guid}", args => Fetch<GetById, Work>
                 (async x => await service.GetByIdAsync(x.Id))
                 .MapTo<JobDto>()
                 .HandleAsync());

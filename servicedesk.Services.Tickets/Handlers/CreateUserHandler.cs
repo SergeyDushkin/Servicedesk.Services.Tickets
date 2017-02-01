@@ -25,7 +25,7 @@ namespace servicedesk.Services.Tickets.Handlers
         {
             var user = new User {
                 ReferenceId = command.ReferenceId,
-                Name = command.Name
+                FirstName = command.Name
             };
 
             await handler

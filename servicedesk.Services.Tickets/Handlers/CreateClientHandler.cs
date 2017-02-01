@@ -12,9 +12,9 @@ namespace servicedesk.Services.Tickets.Handlers
     {
         private readonly IHandler handler;
         private readonly IBusClient bus;
-        private readonly IBaseService<Client> service;
+        private readonly IBaseService<Customer> service;
 
-        public CreateClientHandler(IHandler handler, IBusClient bus, IBaseService<Client> service)
+        public CreateClientHandler(IHandler handler, IBusClient bus, IBaseService<Customer> service)
         {
             this.handler = handler;
             this.bus = bus;
@@ -23,12 +23,12 @@ namespace servicedesk.Services.Tickets.Handlers
 
         public async Task HandleAsync(CreateClient command)
         {
-            var client = new Client {
+            var customer = new Customer {
                 Name = command.Name
             };
 
             await handler
-                .Run(async () => await service.CreateAsync(client))
+                .Run(async () => await service.CreateAsync(customer))
                 .OnSuccess((logger) => logger.Info("New client created successfully"))
                 .OnError((ex, logger) => logger.Error(ex, "Error when trying to create new client: " + ex.GetBaseException().Message))
                 .ExecuteAsync();

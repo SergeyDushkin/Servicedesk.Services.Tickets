@@ -19,11 +19,11 @@ namespace servicedesk.Services.Tickets.Services
         {
             var ticket = new Ticket
             {
-                ClientId = clientId,
-                AddressId = addressId,
+                Client = new Customer(clientId),
+                Address = new Address(addressId),
                 UserId = userId,
                 Description = description,
-                RequestDate = requestDate,
+                StartDate = requestDate,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
             };

@@ -13,12 +13,11 @@ namespace servicedesk.Services.Tickets.Framework
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Address, AddressDto>().ForMember(dst => dst.Address, opt => opt.MapFrom(src => src.FullAddress));
-                cfg.CreateMap<Client, ClientDto>();
                 cfg.CreateMap<Ticket, TicketDto>();
                 cfg.CreateMap<User, UserDto>();
-                cfg.CreateMap<Job, JobDto>();
-                cfg.CreateMap<Job, JobCreated>();
-                cfg.CreateMap<CreateJob, Job>();
+                //cfg.CreateMap<Job, JobDto>();
+                //cfg.CreateMap<Job, JobCreated>();
+                //cfg.CreateMap<CreateJob, Job>();
             });
 
             return config.CreateMapper();

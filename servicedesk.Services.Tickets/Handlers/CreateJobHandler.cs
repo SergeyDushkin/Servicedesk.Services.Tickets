@@ -14,10 +14,10 @@ namespace servicedesk.Services.Tickets.Handlers
     {
         private readonly IHandler handler;
         private readonly IBusClient bus;
-        private readonly IBaseDependentlyService<Job> service;
+        private readonly IBaseDependentlyService<Work> service;
         private readonly IMapper mapper;
 
-        public CreateJobHandler(IHandler handler, IBusClient bus, IBaseDependentlyService<Job> service, IMapper mapper)
+        public CreateJobHandler(IHandler handler, IBusClient bus, IBaseDependentlyService<Work> service, IMapper mapper)
         {
             this.handler = handler;
             this.bus = bus;
@@ -38,7 +38,7 @@ namespace servicedesk.Services.Tickets.Handlers
                 Description = command.Description
             };*/
 
-            var job = mapper.Map<Job>(command);
+            var job = mapper.Map<Work>(command);
             var @event = mapper.Map<JobCreated>(job);
 
             await handler
