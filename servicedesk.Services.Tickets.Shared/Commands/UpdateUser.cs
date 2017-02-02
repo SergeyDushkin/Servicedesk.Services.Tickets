@@ -3,8 +3,9 @@ using servicedesk.Common.Commands;
 
 namespace servicedesk.Services.Tickets.Shared.Commands
 {
-    public class CreateUser
+    public class UpdateUser
     {
+        public Guid Id { get; set; }
         public string Resource { get; set; }
         public Guid ReferenceId { get; set; }
         public string FirstName { get; set; }

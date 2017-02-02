@@ -13,9 +13,6 @@ namespace servicedesk.Services.Tickets
                 .UseAutofac(Bootstrapper.LifeTimeScope)
                 .UseRabbitMq()
                 .SubscribeToCommand<CreateTicket>(exchangeName: "servicedesk.Services.Tickets", routingKey : "ticket.create")
-                .SubscribeToCommand<CreateClient>(exchangeName: "servicedesk.Services.Tickets", routingKey : "client.create")
-                .SubscribeToCommand<CreateUser>(exchangeName: "servicedesk.Services.Tickets", routingKey : "user.create")
-                .SubscribeToCommand<CreateJob>(exchangeName: "servicedesk.Services.Tickets", routingKey : "ticket.job.create")
                 .Build()
                 .Run();
         }

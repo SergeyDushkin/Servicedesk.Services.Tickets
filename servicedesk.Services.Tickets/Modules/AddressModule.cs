@@ -13,6 +13,13 @@ namespace servicedesk.Services.Tickets.Modules
     {
         public AddressModule(IBaseDependentlyService service, IMapper mapper) : base(mapper, "addresses")
         {
+            //HttpStatusCode Create<TCommand, T, TResult>(System.Action<TCommand, T, HttpStatusCode> fetch)
+            //    where TQuery : IQuery, new()
+            //    where TResult : class
+            //{
+            //    return HttpStatusCode.OK;
+            //}
+
             Get("", args => FetchCollection<GetByReferenceId, Address>
                 (async x => (await service.GetByReferenceIdAsync<Address>(x.ReferenceId)).PaginateWithoutLimit())
                 .MapTo<AddressDto>()

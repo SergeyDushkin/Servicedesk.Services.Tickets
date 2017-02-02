@@ -1,5 +1,6 @@
 using AutoMapper;
 using Coolector.Common.Extensions;
+using Nancy;
 using servicedesk.Services.Tickets.Domain;
 using servicedesk.Services.Tickets.Queries;
 using servicedesk.Services.Tickets.Services;
@@ -9,10 +10,10 @@ namespace servicedesk.Services.Tickets.Modules
 {
     public class CustomerModule : ModuleBase
     {
-        public CustomerModule(IBaseService service, IMapper mapper) : base(mapper, "customers")
+        public CustomerModule(IBaseDependentlyService service, IMapper mapper) : base(mapper, "customers")
         {
-            Get("", args => FetchCollection<GetAll, Customer>
-                (async x => (await service.GetAsync<Customer>()).PaginateWithoutLimit())
+            Get("", args => FetchCollection<GetByReferenceId, Customer>
+                (async x => (await service.GetByReferenceIdAsync<Customer>(x.ReferenceId)).PaginateWithoutLimit())
                 .MapTo<ClientDto>()
                 .HandleAsync());
 
@@ -20,6 +21,36 @@ namespace servicedesk.Services.Tickets.Modules
                 (async x => await service.GetByIdAsync<Customer>(x.Id))
                 .MapTo<ClientDto>()
                 .HandleAsync());
+
+            Post("", async args =>
+            {
+                var @input = BindRequest<CreateCustomer>();
+                var @create = mapper.Map<Customer>(@input);
+
+                await service.CreateAsync(@create);
+
+                return HttpStatusCode.Created;
+            });
+
+            Put("{id:guid}", async args =>
+            {
+                var @input = BindRequest<UpdateCustomer>();
+                var @update = mapper.Map<Customer>(@input);
+
+                await service.UpdateAsync(@update);
+
+                return HttpStatusCode.OK;
+            });
+
+            Delete("{id:guid}", async args =>
+            {
+                var @input = BindRequest<GetById>();
+                var @delete = await service.GetByIdAsync<Customer>(@input.Id);
+
+                await service.DeleteAsync(@delete);
+
+                return HttpStatusCode.OK;
+            });
         }
     }
 }
