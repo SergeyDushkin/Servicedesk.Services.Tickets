@@ -12,9 +12,9 @@ namespace servicedesk.Services.Tickets.Handlers
     {
         private readonly IHandler handler;
         private readonly IBusClient bus;
-        private readonly IBaseDependentlyService<Address> service;
+        private readonly IBaseDependentlyService service;
 
-        public CreateAddressHandler(IHandler handler, IBusClient bus, IBaseDependentlyService<Address> service)
+        public CreateAddressHandler(IHandler handler, IBusClient bus, IBaseDependentlyService service)
         {
             this.handler = handler;
             this.bus = bus;

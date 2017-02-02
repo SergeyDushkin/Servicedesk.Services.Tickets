@@ -1,12 +1,24 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using servicedesk.Services.Tickets.Domain;
 
 namespace servicedesk.Services.Tickets.Dal
 {
     public class TicketDbContext : DbContext
     {
-        public TicketDbContext(DbContextOptions<TicketDbContext> options) :base(options)
+        private readonly ILoggerFactory loggerFactory;
+
+        public TicketDbContext(DbContextOptions<TicketDbContext> options, ILoggerFactory loggerFactory) :base(options)
         {
+            this.loggerFactory = loggerFactory;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+            optionsBuilder.UseLoggerFactory(loggerFactory);
+
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -9,16 +9,15 @@ namespace servicedesk.Services.Tickets.Modules
 {
     public class CustomerModule : ModuleBase
     {
-        public CustomerModule(IBaseService<Customer> service, IMapper mapper) 
-            : base(mapper, "customers")
+        public CustomerModule(IBaseService service, IMapper mapper) : base(mapper, "customers")
         {
             Get("", args => FetchCollection<GetAll, Customer>
-                (async x => (await service.GetAsync()).PaginateWithoutLimit())
+                (async x => (await service.GetAsync<Customer>()).PaginateWithoutLimit())
                 .MapTo<ClientDto>()
                 .HandleAsync());
 
             Get("{id:guid}", args => Fetch<GetById, Customer>
-                (async x => await service.GetByIdAsync(x.Id))
+                (async x => await service.GetByIdAsync<Customer>(x.Id))
                 .MapTo<ClientDto>()
                 .HandleAsync());
         }

@@ -14,10 +14,10 @@ namespace servicedesk.Services.Tickets.Handlers
     {
         private readonly IHandler handler;
         private readonly IBusClient bus;
-        private readonly IBaseDependentlyService<Work> service;
+        private readonly IBaseDependentlyService service;
         private readonly IMapper mapper;
 
-        public CreateJobHandler(IHandler handler, IBusClient bus, IBaseDependentlyService<Work> service, IMapper mapper)
+        public CreateJobHandler(IHandler handler, IBusClient bus, IBaseDependentlyService service, IMapper mapper)
         {
             this.handler = handler;
             this.bus = bus;

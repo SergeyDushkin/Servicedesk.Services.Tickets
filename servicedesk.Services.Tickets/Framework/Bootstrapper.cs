@@ -1,18 +1,19 @@
 ﻿using System.Reflection;
 using Autofac;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
 using Nancy;
 using Nancy.Bootstrapper;
-using Coolector.Common.Nancy;
+using Nancy.Configuration;
 using Coolector.Common.Extensions;
 using servicedesk.Common.Commands;
 using servicedesk.Common.Events;
+using servicedesk.Common.Services;
 using servicedesk.Services.Tickets.Repositories;
 using servicedesk.Services.Tickets.Services;
 using servicedesk.Services.Tickets.Dal;
 using servicedesk.Services.Tickets.Domain;
-using Microsoft.EntityFrameworkCore;
-using Nancy.Configuration;
 using Polly;
 using System;
 using System.IO;
@@ -21,8 +22,6 @@ using RabbitMQ.Client.Exceptions;
 using RawRabbit;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
-using servicedesk.Common.Services;
-using Microsoft.Extensions.Logging;
 
 namespace servicedesk.Services.Tickets.Framework
 {
@@ -36,7 +35,7 @@ namespace servicedesk.Services.Tickets.Framework
 
         //private static IExceptionHandler _exceptionHandler;
 
-        public Bootstrapper(IConfiguration configuration, ILogger logger)
+        public Bootstrapper(IContainer container, IConfiguration configuration, ILogger logger) : base(container)
         {
             this._configuration = configuration;
             this.logger = logger;
@@ -66,28 +65,39 @@ namespace servicedesk.Services.Tickets.Framework
 
             container.Update(builder =>
             {
-                var optionsBuilder = new DbContextOptionsBuilder<TicketDbContext>();
-                optionsBuilder.UseNpgsql(_configuration.GetConnectionString("TicketDatabase"));
-                
-                builder.RegisterType<TicketDbContext>().WithParameter("options", optionsBuilder.Options).AsSelf();
-
                 builder.RegisterInstance(AutoMapperConfig.InitializeMapper());
 
-                //builder.RegisterInstance(_configuration.GetSettings<ExceptionlessSettings>()).SingleInstance();
-                //builder.RegisterType<ExceptionlessExceptionHandler>().As<IExceptionHandler>().SingleInstance();
-
-                builder.RegisterType<TicketRepository>().As<ITicketRepository>();
+                builder.RegisterType<BaseRepository<TicketDbContext>>().As<IBaseRepository>();
+                builder.RegisterType<BaseService>().As<IBaseService>();
+                builder.RegisterType<BaseDependentlyService>().As<IBaseDependentlyService>();
+                
                 builder.RegisterType<TicketService>().As<ITicketService>();
 
+                /*
                 builder.RegisterType<BaseRepository<Address, TicketDbContext>>().As<IBaseRepository<Address>>();
+                builder.RegisterType<BaseRepository<BusinessUnit, TicketDbContext>>().As<IBaseRepository<BusinessUnit>>();
+                builder.RegisterType<BaseRepository<Contract, TicketDbContext>>().As<IBaseRepository<Contract>>();
                 builder.RegisterType<BaseRepository<Customer, TicketDbContext>>().As<IBaseRepository<Customer>>();
+                builder.RegisterType<BaseRepository<Service, TicketDbContext>>().As<IBaseRepository<Service>>();
+                builder.RegisterType<BaseRepository<Supplier, TicketDbContext>>().As<IBaseRepository<Supplier>>();
+                builder.RegisterType<BaseRepository<TicketPriority, TicketDbContext>>().As<IBaseRepository<TicketPriority>>();
+                builder.RegisterType<BaseRepository<TicketStatus, TicketDbContext>>().As<IBaseRepository<TicketStatus>>();
                 builder.RegisterType<BaseRepository<User, TicketDbContext>>().As<IBaseRepository<User>>();
                 builder.RegisterType<BaseRepository<Work, TicketDbContext>>().As<IBaseRepository<Work>>();
+                builder.RegisterType<BaseRepository<WorkStatus, TicketDbContext>>().As<IBaseRepository<WorkStatus>>();
 
                 builder.RegisterType<BaseDependentlyService<Address>>().As<IBaseDependentlyService<Address>>();
+                builder.RegisterType<BaseDependentlyService<BusinessUnit>>().As<IBaseDependentlyService<BusinessUnit>>();
+                builder.RegisterType<BaseDependentlyService<Contract>>().As<IBaseDependentlyService<Contract>>();
                 builder.RegisterType<BaseService<Customer>>().As<IBaseService<Customer>>();
+                builder.RegisterType<BaseDependentlyService<Service>>().As<IBaseDependentlyService<Service>>();
+                builder.RegisterType<BaseService<Supplier>>().As<IBaseService<Supplier>>();
+                builder.RegisterType<BaseService<TicketPriority>>().As<IBaseService<TicketPriority>>();
+                builder.RegisterType<BaseService<TicketStatus>>().As<IBaseService<TicketStatus>>();
                 builder.RegisterType<BaseDependentlyService<User>>().As<IBaseDependentlyService<User>>();
                 builder.RegisterType<BaseDependentlyService<Work>>().As<IBaseDependentlyService<Work>>();
+                builder.RegisterType<BaseService<WorkStatus>>().As<IBaseService<WorkStatus>>();
+                */
 
                 builder.RegisterType<Handler>().As<IHandler>();
 
@@ -102,8 +112,17 @@ namespace servicedesk.Services.Tickets.Framework
                 builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IEventHandler<>));
                 builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(ICommandHandler<>));
 
-                //builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IBaseDependentlyService<>));
-                //builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IBaseService<>));
+                //builder.RegisterInstance(_configuration.GetSettings<ExceptionlessSettings>()).SingleInstance();
+                //builder.RegisterType<ExceptionlessExceptionHandler>().As<IExceptionHandler>().SingleInstance();
+
+                //builder.RegisterGeneric(typeof(BaseRepository<,>)).As(typeof(IBaseRepository<>));
+                //builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IBaseRepository<>)).AsImplementedInterfaces();
+                //builder
+                //    .RegisterAssemblyTypes(assembly)
+                //    .Where(t => t.GetTypeInfo().ImplementedInterfaces.Any(i => i.IsGenericParameter && i.GetGenericTypeDefinition() == typeof(IBaseRepository<>)))
+                //    .AsImplementedInterfaces()
+                //    .InstancePerLifetimeScope();
+                //var i = assembly.GetTypes().Where(r => r.IsClosedTypeOf(typeof(IBaseRepository<>))).ToList();
             });
 
             LifeTimeScope = container;

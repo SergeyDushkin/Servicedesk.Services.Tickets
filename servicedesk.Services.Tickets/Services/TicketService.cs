@@ -8,11 +8,11 @@ namespace servicedesk.Services.Tickets.Services
 {
     public class TicketService : ITicketService
     {
-        private readonly ITicketRepository _ticketRepository;
+        private readonly IBaseRepository repository;
 
-        public TicketService(ITicketRepository ticketRepository)
+        public TicketService(IBaseRepository repository)
         {
-            _ticketRepository = ticketRepository;
+            this.repository = repository;
         }
 
         public Task CreateAsync(string userId, Guid clientId, Guid addressId, DateTimeOffset requestDate, string description)
@@ -28,13 +28,13 @@ namespace servicedesk.Services.Tickets.Services
                 UpdatedAt = DateTime.Now,
             };
 
-            _ticketRepository.Add(ticket);
+            repository.Add(ticket);
 
-            return _ticketRepository.CommitAsync();
+            return repository.CommitAsync();
         }
 
-        public Task<IEnumerable<Ticket>> GetAsync() => _ticketRepository.AllIncludingAsync(r => r.Address, f => f.Client);
+        public Task<IEnumerable<Ticket>> GetAsync() => repository.AllIncludingAsync<Ticket>(r => r.Address, f => f.Client);
 
-        public Task<Ticket> GetByIdAsync(Guid id) => _ticketRepository.GetSingleAsync(r => r.Id == id, f1 => f1.Address, f2 => f2.Client);
+        public Task<Ticket> GetByIdAsync(Guid id) => repository.GetSingleAsync<Ticket>(r => r.Id == id, f1 => f1.Address, f2 => f2.Client);
     }
 }

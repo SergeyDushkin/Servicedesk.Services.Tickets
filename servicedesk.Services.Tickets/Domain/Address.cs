@@ -3,7 +3,7 @@ using servicedesk.Common.Domain;
 
 namespace servicedesk.Services.Tickets.Domain
 {
-    public class Address : IdentifiableEntity, IDependently
+    public class Address : IdentifiableEntity, IIdentifiable, IDependently
     {
         public string Resource { get; set; }
         public Guid ReferenceId { get; set; }
