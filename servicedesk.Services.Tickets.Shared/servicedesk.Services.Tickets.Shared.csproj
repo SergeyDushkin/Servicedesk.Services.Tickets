@@ -9,6 +9,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <Version>1.0.32</Version>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="**\*.cs" />

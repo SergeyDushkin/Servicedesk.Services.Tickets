@@ -29,7 +29,7 @@ namespace servicedesk.Services.Tickets.Services
 
     public class BaseService : IBaseService
     {
-        private readonly IBaseRepository repository; 
+        protected readonly IBaseRepository repository; 
 
         public BaseService(IBaseRepository repository)
         {
@@ -39,6 +39,18 @@ namespace servicedesk.Services.Tickets.Services
         public Task CreateAsync<T>(T @create) where T : class, IIdentifiable, new()
         {
             repository.Add(@create);
+            return repository.CommitAsync();
+        }
+
+        public Task UpdateAsync<T>(T @update) where T : class, IIdentifiable, new()
+        {
+            repository.Update(@update);
+            return repository.CommitAsync();
+        }
+
+        public Task DeleteAsync<T>(T @delete) where T : class, IIdentifiable, new()
+        {
+            repository.Delete(@delete);
             return repository.CommitAsync();
         }
 

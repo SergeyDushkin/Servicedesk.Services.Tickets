@@ -10,6 +10,8 @@ namespace servicedesk.Services.Tickets.Services
         Task<IEnumerable<T>> GetAsync<T>() where T: class, IIdentifiable, new();
         Task<T> GetByIdAsync<T>(Guid id) where T : class, IIdentifiable, new();
         Task CreateAsync<T>(T @create) where T : class, IIdentifiable, new();
+        Task UpdateAsync<T>(T @create) where T : class, IIdentifiable, new();
+        Task DeleteAsync<T>(T @create) where T : class, IIdentifiable, new();
     }
 
         /*
