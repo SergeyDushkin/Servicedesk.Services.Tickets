@@ -4,6 +4,7 @@ using Nancy;
 using servicedesk.Services.Tickets.Domain;
 using servicedesk.Services.Tickets.Queries;
 using servicedesk.Services.Tickets.Services;
+using servicedesk.Services.Tickets.Shared.Commands;
 using servicedesk.Services.Tickets.Shared.Dto;
 
 namespace servicedesk.Services.Tickets.Modules
@@ -14,12 +15,12 @@ namespace servicedesk.Services.Tickets.Modules
         {
             Get("", args => FetchCollection<GetByReferenceId, Customer>
                 (async x => (await service.GetByReferenceIdAsync<Customer>(x.ReferenceId)).PaginateWithoutLimit())
-                .MapTo<ClientDto>()
+                .MapTo<CustomerDto>()
                 .HandleAsync());
 
             Get("{id:guid}", args => Fetch<GetById, Customer>
                 (async x => await service.GetByIdAsync<Customer>(x.Id))
-                .MapTo<ClientDto>()
+                .MapTo<CustomerDto>()
                 .HandleAsync());
 
             Post("", async args =>

@@ -9,24 +9,24 @@ using servicedesk.Services.Tickets.Shared.Dto;
 
 namespace servicedesk.Services.Tickets.Modules
 {
-    public class WorksModule : ModuleBase
+    public class TicketStatusModule : ModuleBase
     {
-        public WorksModule(IBaseDependentlyService service, IMapper mapper) : base(mapper, "works")
+        public TicketStatusModule(IBaseService service, IMapper mapper) : base(mapper, "ticket-status")
         {
-            Get("", args => FetchCollection<GetByReferenceId, Work>
-                (async x => (await service.GetByReferenceIdAsync<Work>(x.ReferenceId)).PaginateWithoutLimit())
-                .MapTo<WorkDto>()
+            Get("", args => FetchCollection<GetAll, TicketStatus>
+                (async x => (await service.GetAsync<TicketStatus>()).PaginateWithoutLimit())
+                .MapTo<TicketStatusDto>()
                 .HandleAsync());
 
-            Get("{id:guid}", args => Fetch<GetById, Work>
-                (async x => await service.GetByIdAsync<Work>(x.Id))
-                .MapTo<WorkDto>()
+            Get("{id:guid}", args => Fetch<GetById, TicketStatus>
+                (async x => await service.GetByIdAsync<TicketStatus>(x.Id))
+                .MapTo<TicketStatusDto>()
                 .HandleAsync());
 
             Post("", async args =>
             {
-                var @input = BindRequest<CreateWork>();
-                var @create = mapper.Map<Work>(@input);
+                var @input = BindRequest<CreateTicketStatus>();
+                var @create = mapper.Map<TicketStatus>(@input);
 
                 await service.CreateAsync(@create);
 
@@ -35,8 +35,8 @@ namespace servicedesk.Services.Tickets.Modules
 
             Put("{id:guid}", async args =>
             {
-                var @input = BindRequest<UpdateWork>();
-                var @update = mapper.Map<Work>(@input);
+                var @input = BindRequest<UpdateTicketStatus>();
+                var @update = mapper.Map<TicketStatus>(@input);
 
                 await service.UpdateAsync(@update);
 
@@ -46,7 +46,7 @@ namespace servicedesk.Services.Tickets.Modules
             Delete("{id:guid}", async args =>
             {
                 var @input = BindRequest<GetById>();
-                var @delete = await service.GetByIdAsync<Work>(@input.Id);
+                var @delete = await service.GetByIdAsync<TicketStatus>(@input.Id);
 
                 await service.DeleteAsync(@delete);
 

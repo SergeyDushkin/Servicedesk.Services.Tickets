@@ -17,6 +17,12 @@ namespace servicedesk.Services.Tickets.Domain
         public string UserId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+
+        public Contract() { }
+        public Contract(Guid id)
+        {
+            this.Id = id;
+        }
     }
 }
 

@@ -8,5 +8,11 @@ namespace servicedesk.Services.Tickets.Domain
         public string Resource { get; set; }
         public Guid ReferenceId { get; set; }
         public string Name { get; set; }
+
+        public Supplier() { }
+        public Supplier(Guid id)
+        {
+            this.Id = id;
+        }
     }
 }
