@@ -21,8 +21,8 @@ namespace servicedesk.Services.Tickets.Framework
                 cfg.CreateMap<UpdateBusinessUnit, BusinessUnit>();
 
                 cfg.CreateMap<Contract, ContractDto>();
-                cfg.CreateMap<CreateContract, Contract>().ForMember(dst => dst.Client, opt =>  opt.MapFrom(src => new Customer(src.ClientId)));
-                cfg.CreateMap<UpdateContract, Contract>().ForMember(dst => dst.Client, opt => opt.MapFrom(src => new Customer(src.ClientId)));
+                cfg.CreateMap<CreateContract, Contract>();
+                cfg.CreateMap<UpdateContract, Contract>();
 
                 cfg.CreateMap<Customer, CustomerDto>();
                 cfg.CreateMap<CreateCustomer, Customer>();

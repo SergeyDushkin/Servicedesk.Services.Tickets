@@ -12,6 +12,8 @@ namespace servicedesk.Services.Tickets.Domain
         public DateTime Date { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        public Guid ClientId { get; set; }
         public Customer Client { get; set; }
 
         public string UserId { get; set; }
