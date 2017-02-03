@@ -45,6 +45,16 @@ namespace servicedesk.Services.Tickets.Repositories
         {
             return _context.Set<T>().FirstOrDefaultAsync(predicate);
         }
+        public Task<T> GetSingleAsync<T>(Guid id, params Expression<Func<T, object>>[] includeProperties) where T : class, IIdentifiable, new()
+        {
+            IQueryable<T> query = _context.Set<T>();
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return query.FirstOrDefaultAsync(x => x.Id == id);
+        }
 
         public Task<T> GetSingleAsync<T>(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IIdentifiable, new()
         {

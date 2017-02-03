@@ -30,6 +30,7 @@ namespace servicedesk.Services.Tickets.Repositories
         Task<IEnumerable<T>> GetAllAsync<T>() where T : class, IIdentifiable, new();
         int Count<T>() where T : class, IIdentifiable, new();
         Task<T> GetSingleAsync<T>(Guid id) where T : class, IIdentifiable, new();
+        Task<T> GetSingleAsync<T>(Guid id, params Expression<Func<T, object>>[] includeProperties) where T : class, IIdentifiable, new();
         Task<T> GetSingleAsync<T>(Expression<Func<T, bool>> predicate) where T : class, IIdentifiable, new();
         Task<T> GetSingleAsync<T>(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IIdentifiable, new();
         Task<IEnumerable<T>> FindByAsync<T>(Expression<Func<T, bool>> predicate) where T : class, IIdentifiable, new();
