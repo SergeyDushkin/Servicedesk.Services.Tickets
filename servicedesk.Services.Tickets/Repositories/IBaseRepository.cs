@@ -33,6 +33,7 @@ namespace servicedesk.Services.Tickets.Repositories
         Task<T> GetSingleAsync<T>(Expression<Func<T, bool>> predicate) where T : class, IIdentifiable, new();
         Task<T> GetSingleAsync<T>(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IIdentifiable, new();
         Task<IEnumerable<T>> FindByAsync<T>(Expression<Func<T, bool>> predicate) where T : class, IIdentifiable, new();
+        Task<IEnumerable<T>> FindByAsync<T>(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IIdentifiable, new();
         void Add<T>(T entity) where T : class, IIdentifiable, new();
         void Update<T>(T entity) where T : class, IIdentifiable, new();
         void Delete<T>(T entity) where T : class, IIdentifiable, new();
