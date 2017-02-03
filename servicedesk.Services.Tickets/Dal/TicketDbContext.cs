@@ -34,8 +34,8 @@ namespace servicedesk.Services.Tickets.Dal
             modelBuilder.Entity<Contract>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Contract>().ToTable("WH_Contracts");
             modelBuilder.Entity<Contract>().HasKey(r => r.Id);
-            modelBuilder.Entity<Contract>().Property(r => r.CreatedAt).ValueGeneratedOnAdd();
-            modelBuilder.Entity<Contract>().Property(r => r.UpdatedAt).ValueGeneratedOnAddOrUpdate();
+            modelBuilder.Entity<Contract>().Property(r => r.CreatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Contract>().Property(r => r.UpdatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAddOrUpdate();
 
             modelBuilder.Entity<Customer>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Customer>().ToTable("WH_Customers");
