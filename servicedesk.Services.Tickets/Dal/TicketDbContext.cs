@@ -52,8 +52,8 @@ namespace servicedesk.Services.Tickets.Dal
             modelBuilder.Entity<Ticket>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Ticket>().ToTable("WH_Tickets");
             modelBuilder.Entity<Ticket>().HasKey(r => r.Id);
-            modelBuilder.Entity<Ticket>().Property(r => r.CreatedAt).ValueGeneratedOnAdd();
-            modelBuilder.Entity<Ticket>().Property(r => r.UpdatedAt).ValueGeneratedOnAddOrUpdate();
+            modelBuilder.Entity<Ticket>().Property(r => r.CreatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Ticket>().Property(r => r.UpdatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAddOrUpdate();
 
             modelBuilder.Entity<TicketPriority>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<TicketPriority>().ToTable("WH_TicketPriority");
@@ -66,14 +66,14 @@ namespace servicedesk.Services.Tickets.Dal
             modelBuilder.Entity<User>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<User>().ToTable("WH_Users");
             modelBuilder.Entity<User>().HasKey(r => r.Id);
-            modelBuilder.Entity<User>().Property(r => r.CreatedAt).ValueGeneratedOnAdd();
-            modelBuilder.Entity<User>().Property(r => r.UpdatedAt).ValueGeneratedOnAddOrUpdate();
+            modelBuilder.Entity<User>().Property(r => r.CreatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAdd();
+            modelBuilder.Entity<User>().Property(r => r.UpdatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAddOrUpdate();
 
             modelBuilder.Entity<Work>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Work>().ToTable("WH_Works");
             modelBuilder.Entity<Work>().HasKey(r => r.Id);
-            modelBuilder.Entity<Work>().Property(r => r.CreatedAt).ValueGeneratedOnAdd();
-            modelBuilder.Entity<Work>().Property(r => r.UpdatedAt).ValueGeneratedOnAddOrUpdate();
+            modelBuilder.Entity<Work>().Property(r => r.CreatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Work>().Property(r => r.UpdatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAddOrUpdate();
 
             modelBuilder.Entity<WorkStatus>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<WorkStatus>().ToTable("WH_WorkStatus");
