@@ -11,8 +11,8 @@ namespace servicedesk.Services.Tickets.Shared.Dto
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string GenderCode { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public DateTime DateOfDeath { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public DateTime? DateOfDeath { get; set; }
 
         public string UserId { get; set; }
         public DateTime CreatedAt { get; set; }
