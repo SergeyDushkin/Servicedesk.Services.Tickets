@@ -13,7 +13,6 @@ using servicedesk.Common.Services;
 using servicedesk.Services.Tickets.Repositories;
 using servicedesk.Services.Tickets.Services;
 using servicedesk.Services.Tickets.Dal;
-using servicedesk.Services.Tickets.Domain;
 using Polly;
 using System;
 using System.IO;

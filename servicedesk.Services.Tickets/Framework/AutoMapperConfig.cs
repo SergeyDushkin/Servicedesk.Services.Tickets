@@ -2,7 +2,6 @@ using AutoMapper;
 using servicedesk.Services.Tickets.Domain;
 using servicedesk.Services.Tickets.Shared.Commands;
 using servicedesk.Services.Tickets.Shared.Dto;
-using servicedesk.Services.Tickets.Shared.Events;
 
 namespace servicedesk.Services.Tickets.Framework
 {

@@ -1,7 +1,5 @@
 using AutoMapper;
-using Coolector.Common.Commands;
 using Coolector.Common.Nancy;
-using System.Linq;
 
 namespace servicedesk.Services.Tickets.Modules
 {
