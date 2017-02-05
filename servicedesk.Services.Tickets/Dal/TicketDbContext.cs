@@ -52,6 +52,7 @@ namespace servicedesk.Services.Tickets.Dal
             modelBuilder.Entity<Ticket>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Ticket>().ToTable("WH_Tickets");
             modelBuilder.Entity<Ticket>().HasKey(r => r.Id);
+            modelBuilder.Entity<Ticket>().Property(r => r.TicketNumber).ValueGeneratedOnAdd();
             modelBuilder.Entity<Ticket>().Property(r => r.CreatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAdd();
             modelBuilder.Entity<Ticket>().Property(r => r.UpdatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAddOrUpdate();
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using servicedesk.Services.Tickets.Domain;
+using servicedesk.Services.Tickets.Shared.Commands;
 
 namespace servicedesk.Services.Tickets.Services
 {
@@ -9,6 +10,6 @@ namespace servicedesk.Services.Tickets.Services
     {
         Task<IEnumerable<Ticket>> GetAsync();
         Task<Ticket> GetByIdAsync(Guid id);
-        Task CreateAsync(string userId, Guid clientId, Guid addressId, DateTimeOffset requestDate, string description);
+        Task<Guid> CreateAsync(CreateTicket create);
     }
 }

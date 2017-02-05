@@ -6,11 +6,20 @@ namespace servicedesk.Services.Tickets.Domain
 {
     public class Ticket : IdentifiableEntity, ITimestampable
     {
-        public string TicketNumber { get; set; }
+        public int TicketNumber { get; set; }
         public string Description { get; set; }
         public DateTimeOffset StartDate { get; set; }
         public DateTimeOffset? EndDate { get; set; }
         public DateTimeOffset? Deadline { get; set; }
+
+        public Guid ClientId { get; set; }
+        public Guid AddressId { get; set; }
+        public Guid? ContractId { get; set; }
+        public Guid? PriorityId { get; set; }
+        public Guid? StatusId { get; set; }
+        public Guid? ServiceId { get; set; }
+        public Guid? OperatorId { get; set; }
+        public Guid? BusinessUnitId { get; set; }
 
         public Customer Client { get; set; }
         public Address Address { get; set; }
@@ -26,7 +35,3 @@ namespace servicedesk.Services.Tickets.Domain
         public DateTime? UpdatedAt { get; set; }
     }
 }
-
-
-        //public Guid ClientId { get; set; }
-        //public Guid AddressId { get; set; }

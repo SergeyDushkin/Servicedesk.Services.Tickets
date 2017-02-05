@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using servicedesk.Services.Tickets.Domain;
 using servicedesk.Services.Tickets.Repositories;
+using servicedesk.Services.Tickets.Shared.Commands;
 
 namespace servicedesk.Services.Tickets.Services
 {
@@ -15,25 +16,30 @@ namespace servicedesk.Services.Tickets.Services
             this.repository = repository;
         }
 
-        public Task CreateAsync(string userId, Guid clientId, Guid addressId, DateTimeOffset requestDate, string description)
+        public Task<Guid> CreateAsync(CreateTicket create)
         {
             var ticket = new Ticket
             {
-                Client = new Customer(clientId),
-                Address = new Address(addressId),
-                UserId = userId,
-                Description = description,
-                StartDate = requestDate,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
+                ClientId = create.ClientId,
+                AddressId = create.AddressId,
+                ContractId = create.ContractId,
+                Description = create.Description,
+                BusinessUnitId = create.BusinessUnitId,
+                OperatorId = create.OperatorId,
+                PriorityId = create.PriorityId,
+                ServiceId = create.ServiceId,
+                StartDate = create.StartDate,
+                StatusId = create.StatusId,
+                UserId = create.UserId
             };
 
             repository.Add(ticket);
+            repository.CommitAsync();
 
-            return repository.CommitAsync();
+            return Task.FromResult(ticket.Id);
         }
 
-        public Task<IEnumerable<Ticket>> GetAsync() => repository.AllIncludingAsync<Ticket>(r => r.Address, f => f.Client);
+        public Task<IEnumerable<Ticket>> GetAsync() => repository.AllIncludingAsync<Ticket>(f1 => f1.Address, f2 => f2.Client);
 
         public Task<Ticket> GetByIdAsync(Guid id) => repository.GetSingleAsync<Ticket>(r => r.Id == id, f1 => f1.Address, f2 => f2.Client);
     }
