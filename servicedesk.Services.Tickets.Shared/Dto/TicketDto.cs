@@ -19,6 +19,7 @@ namespace servicedesk.Services.Tickets.Shared.Dto
         public TicketStatusDto Status { get; set; }
         public ServiceDto Service { get; set; }
         public UserDto Operator { get; set; }
+        public UserDto Applicant { get; set; }
         public BusinessUnitDto BusinessUnit { get; set; }
         public List<WorkDto> Works { get; set; }
         public string UserId { get; set; }

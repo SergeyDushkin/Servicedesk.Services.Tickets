@@ -22,6 +22,7 @@ namespace servicedesk.Services.Tickets.Services
             {
                 ClientId = create.ClientId,
                 AddressId = create.AddressId,
+                ApplicantId = create.ApplicantId,
                 ContractId = create.ContractId,
                 Description = create.Description,
                 BusinessUnitId = create.BusinessUnitId,
@@ -40,6 +41,7 @@ namespace servicedesk.Services.Tickets.Services
         }
 
         public Task<IEnumerable<Ticket>> GetAsync() => repository.AllIncludingAsync<Ticket>(f => f.Address, 
+            f => f.Applicant,
             f => f.Client,
             f => f.Contract,
             f => f.BusinessUnit,
@@ -50,6 +52,7 @@ namespace servicedesk.Services.Tickets.Services
 
         public Task<Ticket> GetByIdAsync(Guid id) => repository.GetSingleAsync<Ticket>(r => r.Id == id, 
             f => f.Address, 
+            f => f.Applicant,
             f => f.Client,
             f => f.Contract,
             f => f.BusinessUnit,

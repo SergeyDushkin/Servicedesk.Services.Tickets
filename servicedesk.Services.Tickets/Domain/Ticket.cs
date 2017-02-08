@@ -19,6 +19,7 @@ namespace servicedesk.Services.Tickets.Domain
         public Guid? StatusId { get; set; }
         public Guid? ServiceId { get; set; }
         public Guid? OperatorId { get; set; }
+        public Guid? ApplicantId { get; set; }
         public Guid? BusinessUnitId { get; set; }
 
         public Customer Client { get; set; }
@@ -28,6 +29,7 @@ namespace servicedesk.Services.Tickets.Domain
         public TicketStatus Status { get; set; }
         public Service Service { get; set; }
         public User Operator { get; set; }
+        public User Applicant { get; set; }
         public BusinessUnit BusinessUnit { get; set; }
         public List<Work> Works { get; set; }
         public string UserId { get; set; }
