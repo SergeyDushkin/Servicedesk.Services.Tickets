@@ -39,8 +39,21 @@ namespace servicedesk.Services.Tickets.Services
             return Task.FromResult(ticket.Id);
         }
 
-        public Task<IEnumerable<Ticket>> GetAsync() => repository.AllIncludingAsync<Ticket>(f1 => f1.Address, f2 => f2.Client);
+        public Task<IEnumerable<Ticket>> GetAsync() => repository.AllIncludingAsync<Ticket>(f1 => f1.Address, 
+            f2 => f2.Client,
+            f3 => f3.Contract,
+            f4 => f4.BusinessUnit,
+            f5 => f5.Operator,
+            f6 => f6.Priority,
+            f7 => f7.Service);
 
-        public Task<Ticket> GetByIdAsync(Guid id) => repository.GetSingleAsync<Ticket>(r => r.Id == id, f1 => f1.Address, f2 => f2.Client);
+        public Task<Ticket> GetByIdAsync(Guid id) => repository.GetSingleAsync<Ticket>(r => r.Id == id, 
+            f1 => f1.Address, 
+            f2 => f2.Client,
+            f3 => f3.Contract,
+            f4 => f4.BusinessUnit,
+            f5 => f5.Operator,
+            f6 => f6.Priority,
+            f7 => f7.Service);
     }
 }
