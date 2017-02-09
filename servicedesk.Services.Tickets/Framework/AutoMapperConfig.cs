@@ -50,15 +50,16 @@ namespace servicedesk.Services.Tickets.Framework
                 cfg.CreateMap<UpdateUser, User>();
 
                 cfg.CreateMap<Work, WorkDto>();
-                cfg.CreateMap<CreateWork, Work>()
-                    .ForMember(dst => dst.Supplier, opt => opt.MapFrom(src => new Supplier(src.SupplierId)))
-                    .ForMember(dst => dst.Worker, opt => opt.MapFrom(src => new User(src.WorkerId)))
-                    .ForMember(dst => dst.Status, opt => opt.MapFrom(src => new WorkStatus(src.StatusId)));
+                cfg.CreateMap<CreateWork, Work>();
+                    //.ForMember(dst => dst.Supplier, opt => opt.MapFrom(src => new Supplier(src.SupplierId)))
+                    //.ForMember(dst => dst.Worker, opt => opt.MapFrom(src => new User(src.WorkerId)))
+                    //.ForMember(dst => dst.Status, opt => opt.MapFrom(src => new WorkStatus(src.StatusId)))
+                    //.ForMember(dst => dst.Status, opt => opt.Ignore());
 
-                cfg.CreateMap<UpdateWork, Work>()
-                    .ForMember(dst => dst.Supplier, opt => opt.MapFrom(src => new Supplier(src.SupplierId)))
-                    .ForMember(dst => dst.Worker, opt => opt.MapFrom(src => new User(src.WorkerId)))
-                    .ForMember(dst => dst.Status, opt => opt.MapFrom(src => new WorkStatus(src.StatusId)));
+                cfg.CreateMap<UpdateWork, Work>();
+                    //.ForMember(dst => dst.Supplier, opt => opt.MapFrom(src => new Supplier(src.SupplierId)))
+                    //.ForMember(dst => dst.Worker, opt => opt.MapFrom(src => new User(src.WorkerId)))
+                    //.ForMember(dst => dst.Status, opt => opt.MapFrom(src => new WorkStatus(src.StatusId)));
 
                 cfg.CreateMap<WorkStatus, WorkStatusDto>();
                 cfg.CreateMap<CreateWorkStatus, WorkStatus>();
