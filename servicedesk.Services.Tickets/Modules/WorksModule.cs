@@ -14,12 +14,12 @@ namespace servicedesk.Services.Tickets.Modules
         public WorksModule(IBaseDependentlyService service, IMapper mapper) : base(mapper, "works")
         {
             Get("", args => FetchCollection<GetByReferenceId, Work>
-                (async x => (await service.GetByReferenceIdAsync<Work>(x.ReferenceId)).PaginateWithoutLimit())
+                (async x => (await service.GetByReferenceIdAsync<Work>(x.ReferenceId, f => f.Status, f => f.Supplier, f => f.Worker)).PaginateWithoutLimit())
                 .MapTo<WorkDto>()
                 .HandleAsync());
 
             Get("{id:guid}", args => Fetch<GetById, Work>
-                (async x => await service.GetByIdAsync<Work>(x.Id))
+                (async x => await service.GetByIdAsync<Work>(x.Id, f => f.Status, f => f.Supplier, f => f.Worker))
                 .MapTo<WorkDto>()
                 .HandleAsync());
 
