@@ -12,7 +12,7 @@ namespace servicedesk.Services.Tickets.Domain
         public Supplier() { }
         public Supplier(Guid id)
         {
-            this.Id = id;
+            base.Id = id;
         }
     }
 }
