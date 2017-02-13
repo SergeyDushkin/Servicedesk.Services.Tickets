@@ -21,6 +21,8 @@ using RabbitMQ.Client.Exceptions;
 using RawRabbit;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace servicedesk.Services.Tickets.Framework
 {
@@ -65,6 +67,8 @@ namespace servicedesk.Services.Tickets.Framework
             container.Update(builder =>
             {
                 builder.RegisterInstance(AutoMapperConfig.InitializeMapper());
+
+                builder.RegisterType<CustomJsonSerializer>().As<JsonSerializer>().SingleInstance();
 
                 builder.RegisterType<BaseRepository<TicketDbContext>>().As<IBaseRepository>();
                 builder.RegisterType<BaseService>().As<IBaseService>();
@@ -154,6 +158,15 @@ namespace servicedesk.Services.Tickets.Framework
             logger.LogInformation("servicedesk.Services.Tickets API has started.");
 
             //_exceptionHandler = container.Resolve<IExceptionHandler>();
+        }
+    }
+
+    public class CustomJsonSerializer : JsonSerializer
+    {
+        public CustomJsonSerializer()
+        {
+            this.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            this.Formatting = Formatting.Indented;
         }
     }
 }
