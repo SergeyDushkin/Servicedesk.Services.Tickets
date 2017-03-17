@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using RawRabbit;
 using servicedesk.Common.Commands;
@@ -11,17 +13,17 @@ namespace servicedesk.Services.Tickets.Handlers
 {
     public class CreateTicketHandler : ICommandHandler<CreateTicket>
     {
+        private readonly IServiceProvider services;
         private readonly IHandler handler;
         private readonly ILogger logger;
         private readonly IBusClient bus;
-        private readonly ITicketService ticketService;
 
-        public CreateTicketHandler(IHandler handler, IBusClient bus, ILogger<CreateTicketHandler> logger, ITicketService ticketService)
+        public CreateTicketHandler(IHandler handler, IBusClient bus, ILogger<CreateTicketHandler> logger, IServiceProvider services)
         {
             this.handler = handler;
             this.bus = bus;
             this.logger = logger;
-            this.ticketService = ticketService;
+            this.services = services;
         }
 
         public async Task HandleAsync(CreateTicket command)
@@ -29,6 +31,7 @@ namespace servicedesk.Services.Tickets.Handlers
             await handler
                 .Run(async () => 
                 {
+                    var ticketService = this.services.GetService<ITicketService>();
                     var id = await ticketService.CreateAsync(command);
                     var @event = new TicketCreated(command.Request.Id, command.UserId, id);
 
