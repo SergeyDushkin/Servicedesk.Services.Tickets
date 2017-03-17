@@ -13,17 +13,17 @@ namespace servicedesk.Services.Tickets.Handlers
 {
     public class CreateTicketHandler : ICommandHandler<CreateTicket>
     {
-        private readonly IServiceProvider services;
+        private readonly IServiceScopeFactory scopeFactory;
         private readonly IHandler handler;
         private readonly ILogger logger;
         private readonly IBusClient bus;
 
-        public CreateTicketHandler(IHandler handler, IBusClient bus, ILogger<CreateTicketHandler> logger, IServiceProvider services)
+        public CreateTicketHandler(IHandler handler, IBusClient bus, ILogger<CreateTicketHandler> logger, IServiceScopeFactory scopeFactory)
         {
             this.handler = handler;
             this.bus = bus;
             this.logger = logger;
-            this.services = services;
+            this.scopeFactory = scopeFactory;
         }
 
         public async Task HandleAsync(CreateTicket command)
@@ -31,8 +31,11 @@ namespace servicedesk.Services.Tickets.Handlers
             await handler
                 .Run(async () => 
                 {
-                    var ticketService = this.services.GetService<ITicketService>();
+                    var scope = scopeFactory.CreateScope();                        
+                    var ticketService = scope.ServiceProvider.GetService<ITicketService>();
                     var id = await ticketService.CreateAsync(command);
+                    scope.Dispose();
+                    
                     var @event = new TicketCreated(command.Request.Id, command.UserId, id);
 
                     logger.LogDebug("New ticket created successfully");
