@@ -10,7 +10,6 @@ using Coolector.Common.Extensions;
 using servicedesk.Common.Commands;
 using servicedesk.Common.Events;
 using servicedesk.Common.Services;
-using servicedesk.Services.Tickets.Repositories;
 using servicedesk.Services.Tickets.Services;
 using servicedesk.Services.Tickets.Dal;
 using Polly;
@@ -23,6 +22,7 @@ using RawRabbit.Configuration;
 using RawRabbit.vNext;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using servicedesk.Common.Repositories;
 
 namespace servicedesk.Services.Tickets.Framework
 {

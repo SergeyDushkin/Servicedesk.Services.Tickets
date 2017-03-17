@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using servicedesk.Services.Tickets.Domain;
-using servicedesk.Services.Tickets.Repositories;
 using servicedesk.Services.Tickets.Shared.Commands;
+using servicedesk.Common.Repositories;
 
 namespace servicedesk.Services.Tickets.Services
 {
