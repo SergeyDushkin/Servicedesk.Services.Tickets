@@ -27,6 +27,11 @@ namespace servicedesk.Services.Tickets.Modules
             {
                 var @input = BindRequest<CreateTicketPriority>();
                 var @create = mapper.Map<TicketPriority>(@input);
+                
+                if (!@input.Id.GetValueOrDefault().IsEmpty())
+                {
+                    @create.SetId(@input.Id.GetValueOrDefault());
+                }
 
                 await service.CreateAsync(@create);
 

@@ -34,6 +34,11 @@ namespace servicedesk.Services.Tickets.Modules
             {
                 var @input = BindRequest<CreateAddress>();
                 var @create = mapper.Map<Address>(@input);
+                
+                if (!@input.Id.GetValueOrDefault().IsEmpty())
+                {
+                    @create.SetId(@input.Id.GetValueOrDefault());
+                }
 
                 await service.CreateAsync(@create);
 

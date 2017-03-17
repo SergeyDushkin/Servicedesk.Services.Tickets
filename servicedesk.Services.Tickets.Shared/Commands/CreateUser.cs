@@ -4,6 +4,7 @@ namespace servicedesk.Services.Tickets.Shared.Commands
 {
     public class CreateUser
     {
+        public Guid? Id { get; set; }
         public string Resource { get; set; }
         public Guid ReferenceId { get; set; }
         public string FirstName { get; set; }

@@ -25,6 +25,11 @@ namespace servicedesk.Services.Tickets.Domain
         {
             this.Id = id;
         }
+
+        public void SetId(Guid id) 
+        {
+            this.Id = id;
+        }
     }
 }
 

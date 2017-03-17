@@ -5,6 +5,7 @@ namespace servicedesk.Services.Tickets.Shared.Commands
 {
     public class CreateTicket : IAuthenticatedCommand
     {
+        public System.Guid? Id { get; set; }
         public Request Request { get; set; }
         public string UserId { get; set; }
         public Guid ClientId { get; set; }

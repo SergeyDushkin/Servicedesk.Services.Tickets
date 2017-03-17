@@ -27,6 +27,11 @@ namespace servicedesk.Services.Tickets.Modules
             {
                 var @input = BindRequest<CreateUser>();
                 var @create = mapper.Map<User>(@input);
+                
+                if (!@input.Id.GetValueOrDefault().IsEmpty())
+                {
+                    @create.SetId(@input.Id.GetValueOrDefault());
+                }
 
                 await service.CreateAsync(@create);
 

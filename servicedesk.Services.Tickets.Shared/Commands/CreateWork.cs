@@ -4,6 +4,7 @@ namespace servicedesk.Services.Tickets.Shared.Commands
 {
     public class CreateWork
     {
+        public Guid? Id { get; set; }
         public string Resource { get; set; }
         public Guid ReferenceId { get; set; }
         public Guid SupplierId { get; set; }

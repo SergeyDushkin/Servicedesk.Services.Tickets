@@ -23,5 +23,10 @@ namespace servicedesk.Services.Tickets.Domain
         public string UserId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+
+        public void SetId(Guid id) 
+        {
+            this.Id = id;
+        }
     }
 }
