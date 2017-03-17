@@ -1,9 +1,9 @@
 using AutoMapper;
 using Coolector.Common.Extensions;
 using Nancy;
+using servicedesk.Common.Services;
 using servicedesk.Services.Tickets.Domain;
 using servicedesk.Services.Tickets.Queries;
-using servicedesk.Services.Tickets.Services;
 using servicedesk.Services.Tickets.Shared.Commands;
 using servicedesk.Services.Tickets.Shared.Dto;
 

@@ -1,9 +1,9 @@
 using AutoMapper;
 using Coolector.Common.Extensions;
 using Nancy;
+using servicedesk.Common.Services;
 using servicedesk.Services.Tickets.Domain;
 using servicedesk.Services.Tickets.Queries;
-using servicedesk.Services.Tickets.Services;
 using servicedesk.Services.Tickets.Shared.Commands;
 using servicedesk.Services.Tickets.Shared.Dto;
 
@@ -40,12 +40,7 @@ namespace servicedesk.Services.Tickets.Modules
 
             Put("{id:guid}", async args =>
             {
-                var @input = BindRequest<UpdateTicketPriority>();
-                var @update = mapper.Map<TicketPriority>(@input);
-
-                await service.UpdateAsync(@update);
-
-                return HttpStatusCode.OK;
+                return await this.Update<UpdateTicketPriority, TicketPriority>(service, mapper);
             });
 
             Delete("{id:guid}", async args =>
