@@ -14,7 +14,7 @@ namespace servicedesk.Services.Tickets.Modules
         public CustomerModule(IBaseDependentlyService service, IMapper mapper) : base(mapper, "customers")
         {
             Get("", args => FetchCollection<GetByReferenceId, Customer>
-                (async x => (await service.GetByReferenceIdAsync<Customer>(x.ReferenceId)).PaginateWithoutLimit())
+                (async x => (await service.GetByReferenceIdAsync<Customer>(x.ReferenceId)).Paginate(x))
                 .MapTo<CustomerDto>()
                 .HandleAsync());
 

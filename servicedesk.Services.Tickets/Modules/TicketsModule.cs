@@ -13,7 +13,7 @@ namespace servicedesk.Services.Tickets.Modules
             : base(mapper, "tickets")
         {
             Get("", args => FetchCollection<BrowseTickets, Ticket>
-                (async x => (await ticketService.GetAsync()).PaginateWithoutLimit())
+                (async x => (await ticketService.GetAsync()).Paginate(x))
                 .MapTo<TicketDto>()
                 .HandleAsync());
 

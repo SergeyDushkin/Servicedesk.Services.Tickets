@@ -14,7 +14,7 @@ namespace servicedesk.Services.Tickets.Modules
         public SupplierModule(IBaseDependentlyService service, IMapper mapper) : base(mapper, "suppliers")
         {
             Get("", args => FetchCollection<GetByReferenceId, Supplier>
-                (async x => (await service.GetByReferenceIdAsync<Supplier>(x.ReferenceId)).PaginateWithoutLimit())
+                (async x => (await service.GetByReferenceIdAsync<Supplier>(x.ReferenceId)).Paginate(x))
                 .MapTo<SupplierDto>()
                 .HandleAsync());
 

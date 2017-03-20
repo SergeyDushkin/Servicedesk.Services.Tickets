@@ -21,7 +21,7 @@ namespace servicedesk.Services.Tickets.Modules
             //}
 
             Get("", args => FetchCollection<GetByReferenceId, Address>
-                (async x => (await service.GetByReferenceIdAsync<Address>(x.ReferenceId)).PaginateWithoutLimit())
+                (async x => (await service.GetByReferenceIdAsync<Address>(x.ReferenceId)).Paginate(x))
                 .MapTo<AddressDto>()
                 .HandleAsync());
 
