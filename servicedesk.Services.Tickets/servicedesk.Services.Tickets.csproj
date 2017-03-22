@@ -11,7 +11,7 @@
     <PackageReference Include="Autofac" Version="4.4.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.0.0" />
     <PackageReference Include="AutoMapper" Version="6.0.1" />
-    <PackageReference Include="Nancy" Version="2.0.0-barneyrubble" />
+    <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="1.1.1" />
@@ -33,9 +33,9 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="2.2.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="1.4.0" />
     <PackageReference Include="Serilog.Sinks.ElasticSearch" Version="5.0.0" />
-    <PackageReference Include="Coolector.Common" Version="1.0.*" />
     <PackageReference Include="ServiceDesk.Common" Version="1.0.*" />
     <PackageReference Include="ServiceDesk.Services.Tickets.Shared" Version="1.0.*" />
+    <PackageReference Include="Collectively.Common" Version="1.0.*" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />

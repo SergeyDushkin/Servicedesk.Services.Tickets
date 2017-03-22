@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using servicedesk.Services.Tickets.Domain;
 using servicedesk.Services.Tickets.Shared.Commands;
 using servicedesk.Common.Repositories;

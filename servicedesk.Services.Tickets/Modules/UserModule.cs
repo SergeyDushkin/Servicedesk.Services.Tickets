@@ -1,5 +1,5 @@
 using AutoMapper;
-using Coolector.Common.Extensions;
+using Collectively.Common.Extensions;
 using Nancy;
 using servicedesk.Common.Services;
 using servicedesk.Services.Tickets.Domain;

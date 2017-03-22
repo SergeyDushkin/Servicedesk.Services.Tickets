@@ -1,5 +1,5 @@
 using AutoMapper;
-using Coolector.Common.Nancy;
+using Collectively.Common.Nancy;
 using Nancy;
 using servicedesk.Common.Domain;
 using servicedesk.Common.Services;

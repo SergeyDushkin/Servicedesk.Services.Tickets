@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Configuration;
-using Coolector.Common.Extensions;
+using Collectively.Common.Extensions;
 using servicedesk.Common.Commands;
 using servicedesk.Common.Events;
 using servicedesk.Common.Services;
