@@ -7,6 +7,7 @@ namespace servicedesk.Services.Tickets.Domain
     {
         public string Resource { get; set; }
         public Guid ReferenceId { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
 
         public Service() { }
