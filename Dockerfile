@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:1.1.0-sdk-msbuild-rc3
+FROM microsoft/dotnet:1.1.1-sdk
 COPY ./servicedesk.Services.Tickets /app
 WORKDIR /app
  
