@@ -80,6 +80,21 @@ namespace servicedesk.Services.Tickets.Dal
             modelBuilder.Entity<WorkStatus>().ToTable("WH_WorkStatus");
             modelBuilder.Entity<WorkStatus>().HasKey(r => r.Id);
 
+            modelBuilder.Entity<ContractService>().Property(p => p.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<ContractService>().HasKey(r => r.Id);
+            modelBuilder.Entity<ContractService>().Property(r => r.CreatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAdd();
+            modelBuilder.Entity<ContractService>().Property(r => r.UpdatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<UnitService>().Property(p => p.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<UnitService>().HasKey(r => r.Id);
+            modelBuilder.Entity<UnitService>().Property(r => r.CreatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAdd();
+            modelBuilder.Entity<UnitService>().Property(r => r.UpdatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<UnitUser>().Property(p => p.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<UnitUser>().HasKey(r => r.Id);
+            modelBuilder.Entity<UnitUser>().Property(r => r.CreatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAdd();
+            modelBuilder.Entity<UnitUser>().Property(r => r.UpdatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAddOrUpdate();
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -95,5 +110,9 @@ namespace servicedesk.Services.Tickets.Dal
         public DbSet<User> Users { get; set; }
         public DbSet<Work> Works { get; set; }
         public DbSet<WorkStatus> WorkStatus { get; set; }
+
+        public DbSet<ContractService> ContractServices { get; set; }
+        public DbSet<UnitService> UnitServices { get; set; }
+        public DbSet<UnitUser> UnitUsers { get; set; }
     }
 }

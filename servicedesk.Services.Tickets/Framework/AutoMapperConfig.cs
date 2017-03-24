@@ -1,5 +1,6 @@
 using AutoMapper;
 using servicedesk.Services.Tickets.Domain;
+using servicedesk.Services.Tickets.Modules;
 using servicedesk.Services.Tickets.Shared.Commands;
 using servicedesk.Services.Tickets.Shared.Dto;
 
@@ -56,6 +57,8 @@ namespace servicedesk.Services.Tickets.Framework
                 cfg.CreateMap<WorkStatus, WorkStatusDto>();
                 cfg.CreateMap<CreateWorkStatus, WorkStatus>();
                 cfg.CreateMap<UpdateWorkStatus, WorkStatus>();
+
+                cfg.CreateMap<AppendServiceToContract, ContractService>();
             });
 
             return config.CreateMapper();
