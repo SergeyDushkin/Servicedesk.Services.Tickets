@@ -1,5 +1,5 @@
 using System;
-using Collectively.Common.Queries;
+using servicedesk.Common.Queries;
 
 namespace servicedesk.Services.Tickets.Queries
 {

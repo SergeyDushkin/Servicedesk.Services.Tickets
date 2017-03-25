@@ -1,4 +1,4 @@
-using Collectively.Common.Types;
+using servicedesk.Common.Types;
 
 namespace servicedesk.Services.Tickets.Queries
 {

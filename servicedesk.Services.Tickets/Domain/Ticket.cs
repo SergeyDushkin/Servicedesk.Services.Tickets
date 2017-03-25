@@ -4,8 +4,10 @@ using servicedesk.Common.Domain;
 
 namespace servicedesk.Services.Tickets.Domain
 {
-    public class Ticket : IdentifiableEntity, ITimestampable
+    public class Ticket : IdentifiableEntity, IDependently, ITimestampable
     {
+        public string Resource { get; set; }
+        public Guid ReferenceId { get; set; }
         public int TicketNumber { get; set; }
         public string Description { get; set; }
         public DateTimeOffset StartDate { get; set; }

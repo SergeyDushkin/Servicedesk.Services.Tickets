@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using Collectively.Common.Queries;
-using Collectively.Common.Types;
+using servicedesk.Common.Queries;
+using servicedesk.Common.Types;
 
 namespace servicedesk.Services.Tickets.Extensions
 {
