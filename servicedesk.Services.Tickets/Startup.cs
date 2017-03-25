@@ -76,6 +76,12 @@ namespace servicedesk.Services.Tickets
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "ServiceDesk.Services.Tickets API");
             });
 
+
+            if (app.ApplicationServices.GetService<TicketDbContext>().Database.EnsureCreated())
+            {
+                app.ApplicationServices.GetService<IDatabaseSeeder>().SeedAsync().Start();
+            }
+
             // If you want to dispose of resources that have been resolved in the
             // application container, register for the "ApplicationStopped" event.
             appLifetime.ApplicationStopped.Register(() => this.ApplicationContainer.Dispose());
