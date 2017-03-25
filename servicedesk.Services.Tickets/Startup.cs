@@ -79,7 +79,7 @@ namespace servicedesk.Services.Tickets
 
             if (app.ApplicationServices.GetService<TicketDbContext>().Database.EnsureCreated())
             {
-                app.ApplicationServices.GetService<IDatabaseSeeder>().SeedAsync().Start();
+                app.ApplicationServices.GetService<IDatabaseSeeder>().SeedAsync();
             }
 
             // If you want to dispose of resources that have been resolved in the
