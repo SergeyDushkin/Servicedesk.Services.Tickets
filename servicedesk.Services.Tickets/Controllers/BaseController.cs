@@ -101,7 +101,7 @@ namespace servicedesk.Services.Tickets.Controllers
             var all = service.Query<T>(r => r.ReferenceId == query.ReferenceId);
             var count = all.Count();
 
-            var page = query.Page <= 0 ? 100 : query.Page; 
+            var page = query.Page <= 0 ? 1 : query.Page; 
             var resultsPerPage = query.Results <= 0 ? 100 : query.Results;
             var skip = (page - 1) * resultsPerPage;
 
