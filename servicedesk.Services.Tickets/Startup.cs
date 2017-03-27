@@ -164,11 +164,11 @@ namespace servicedesk.Services.Tickets
             builder.RegisterInstance(AutoMapperConfig.InitializeMapper());
 
             builder.RegisterType<DatabaseInitializer>().As<IDatabaseSeeder>();
-            builder.RegisterType<BaseRepository<TicketDbContext>>().As<IBaseRepository>();
-            builder.RegisterType<BaseService>().As<IBaseService>();
-            builder.RegisterType<BaseDependentlyService>().As<IBaseDependentlyService>();
+            builder.RegisterType<BaseRepository<TicketDbContext>>().As<IBaseRepository>().InstancePerRequest();
+            builder.RegisterType<BaseService>().As<IBaseService>().InstancePerRequest();
+            builder.RegisterType<BaseDependentlyService>().As<IBaseDependentlyService>().InstancePerRequest();
             
-            builder.RegisterType<TicketService>().As<ITicketService>();
+            builder.RegisterType<TicketService>().As<ITicketService>().InstancePerRequest();
 
             builder.RegisterType<Handler>().As<IHandler>();
 
