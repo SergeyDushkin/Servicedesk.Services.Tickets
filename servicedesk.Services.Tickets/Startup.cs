@@ -40,6 +40,7 @@ namespace servicedesk.Services.Tickets
         public IContainer ApplicationContainer { get; set; }
         public static ILifetimeScope LifetimeScope { get; private set; }
         public Microsoft.Extensions.Logging.ILogger Logger { get; set; }
+        ILoggerFactory LoggerFactory { get; set; }
 
         public Startup(IHostingEnvironment env)
         {
@@ -64,7 +65,7 @@ namespace servicedesk.Services.Tickets
             loggerFactory.AddConsole();
 
             Logger = loggerFactory.CreateLogger("ServiceDesk.Services.Tickets");
-
+            LoggerFactory = loggerFactory;
             
             app.UseCors("cors");
             app.UseMvc();
@@ -117,7 +118,7 @@ namespace servicedesk.Services.Tickets
             var builder = new ContainerBuilder();
 
             // Add any Autofac modules or registrations.
-            builder.RegisterModule(new AutofacModule(Configuration, Logger));
+            builder.RegisterModule(new AutofacModule(Configuration, Logger, LoggerFactory));
 
             // Populate the services.
             builder.Populate(services);
@@ -137,10 +138,13 @@ namespace servicedesk.Services.Tickets
         IConfiguration configuration { get; }
         Microsoft.Extensions.Logging.ILogger logger  { get; }
 
-        public AutofacModule(IConfiguration configuration, Microsoft.Extensions.Logging.ILogger logger) 
+        ILoggerFactory loggerFactory { get; }
+
+        public AutofacModule(IConfiguration configuration, Microsoft.Extensions.Logging.ILogger logger, ILoggerFactory loggerFactory) 
         {
             this.configuration = configuration;
             this.logger = logger;
+            this.loggerFactory = loggerFactory;
         }
         protected override void Load(ContainerBuilder builder)
         {
@@ -156,8 +160,14 @@ namespace servicedesk.Services.Tickets
                 );
                 
             builder.RegisterInstance(AutoMapperConfig.InitializeMapper());
+            
+            //var databaseBuilder = new DbContextOptionsBuilder<TicketDbContext>().UseNpgsql(configuration.GetConnectionString("TicketDatabase"));
+            //var db = new TicketDbContext(databaseBuilder.Options, loggerFactory);
+            //builder.RegisterInstance<DbContextOptions<TicketDbContext>>(databaseBuilder.Options);
+            //builder.RegisterType<TicketDbContext>().InstancePerLifetimeScope();
 
-            builder.RegisterType<DatabaseInitializer>().As<IDatabaseSeeder>();
+            builder.RegisterType<DatabaseInitializer>().As<IDatabaseSeeder>(); 
+
             builder.RegisterType<BaseRepository<TicketDbContext>>().As<IBaseRepository>().InstancePerLifetimeScope();
             builder.RegisterType<BaseService>().As<IBaseService>().InstancePerLifetimeScope();
             builder.RegisterType<BaseDependentlyService>().As<IBaseDependentlyService>().InstancePerLifetimeScope();

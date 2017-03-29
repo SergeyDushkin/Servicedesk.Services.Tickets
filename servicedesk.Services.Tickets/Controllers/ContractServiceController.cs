@@ -7,9 +7,9 @@ using servicedesk.Services.Tickets.Shared.Dto;
 namespace servicedesk.Services.Tickets.Controllers
 {
     [Route("contract-service")]
-    public class ContractServiceController : BaseController<ContractService, ContractService>
+    public class ContractServiceController : BaseController<ContractService, ContractServiceDto, CreateContractService, UpdateContractService>
     {
-        public ContractServiceController(IBaseService service, ILoggerFactory loggerFactory) : base(service, loggerFactory)
+        public ContractServiceController(IBaseService service, ILoggerFactory loggerFactory, AutoMapper.IMapper mapper) : base(service, loggerFactory, mapper)
         {
         }
     }

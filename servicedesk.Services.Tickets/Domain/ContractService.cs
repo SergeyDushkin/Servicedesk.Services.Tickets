@@ -26,4 +26,27 @@ namespace servicedesk.Services.Tickets.Domain
             this.Id = id;
         }
     }
+
+    public class ContractServiceDto
+    {
+        public Guid Id { get; set; }
+        public Guid ContractId { get; set; }
+        public Guid ServiceId { get; set; }
+
+        public Contract Contract { get; set; }
+        public Service Service { get; set; }
+    }
+
+    public class CreateContractService
+    {
+        public Guid ContractId { get; set; }
+        public Guid ServiceId { get; set; }
+    }
+
+    public class UpdateContractService
+    {
+        public Guid Id { get; set; }
+        public Guid ContractId { get; set; }
+        public Guid ServiceId { get; set; }
+    }
 }

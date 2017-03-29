@@ -58,6 +58,14 @@ namespace servicedesk.Services.Tickets.Framework
                 cfg.CreateMap<UpdateWorkStatus, WorkStatus>();
 
                 //cfg.CreateMap<AppendServiceToContract, ContractService>();
+
+                cfg.CreateMap<ContractService, ContractServiceDto>();
+                cfg.CreateMap<CreateContractService, ContractService>();
+                cfg.CreateMap<UpdateContractService, ContractService>();
+
+                cfg.CreateMap<UnitUser, UnitUserDto>();
+                cfg.CreateMap<CreateUnitUser, UnitUser>();
+                cfg.CreateMap<UpdateUnitUser, UnitUser>();
             });
 
             return config.CreateMapper();
