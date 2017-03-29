@@ -154,12 +154,6 @@ namespace servicedesk.Services.Tickets
                         logger.LogError(new EventId(10001, "RabbitMQ Connect Error"), exception, $"Cannot connect to RabbitMQ. retryCount:{retryCount}, duration:{timeSpan}");
                     }
                 );
-
-            // The generic ILogger<TCategoryName> service was added to the ServiceCollection by ASP.NET Core.
-            // It was then registered with Autofac using the Populate method in ConfigureServices.
-            //builder.Register(c => new ValuesService(c.Resolve<ILogger<ValuesService>>()))
-            //    .As<IValuesService>()
-            //    .InstancePerLifetimeScope();
                 
             builder.RegisterInstance(AutoMapperConfig.InitializeMapper());
 

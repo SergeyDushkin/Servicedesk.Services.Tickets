@@ -11,13 +11,14 @@ namespace servicedesk.Services.Tickets.Dal
         public TicketDbContext(DbContextOptions<TicketDbContext> options, ILoggerFactory loggerFactory) :base(options)
         {
             this.loggerFactory = loggerFactory;
+            this.ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableSensitiveDataLogging();
             optionsBuilder.UseLoggerFactory(loggerFactory);
-
+            
             base.OnConfiguring(optionsBuilder);
         }
 
