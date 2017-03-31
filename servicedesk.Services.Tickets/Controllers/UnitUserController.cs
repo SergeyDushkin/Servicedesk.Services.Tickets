@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -19,7 +20,7 @@ namespace servicedesk.Services.Tickets.Controllers
         [Route("users")]
         public async Task<IActionResult> GetUsersByUnitId(BrowseUnitUsers query)
         {
-            var data = service.Query<UnitUser>(r => r.UnitId == query.UnitId);
+            var data = service.Query<UnitUser>(r => r.UnitId == query.UnitId, r => r.User).Select(r => r.User);
             return await PagedResult(data, query);
         }
     }
