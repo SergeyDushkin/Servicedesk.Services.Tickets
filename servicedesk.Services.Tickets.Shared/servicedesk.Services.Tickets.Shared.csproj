@@ -1,11 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyTitle>ServiceDesk.Services.Tickets.Shared</AssemblyTitle>
-    <VersionPrefix>1.0.40</VersionPrefix>
+    <VersionPrefix>1.0.42</VersionPrefix>
     <Authors>SergeyDushkin</Authors>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>ServiceDesk.Services.Tickets.Shared</AssemblyName>
+    <PackageId>ServiceDesk.Services.Tickets.Shared</PackageId>
     <PackageProjectUrl>https://github.com/SergeyDushkin/ServiceDesk.Services.Tickets</PackageProjectUrl>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ServiceDesk.Common" Version="1.0.*" />
