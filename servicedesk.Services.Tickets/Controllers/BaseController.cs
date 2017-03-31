@@ -8,6 +8,8 @@ using servicedesk.Common.Domain;
 using servicedesk.Common.Services;
 using servicedesk.Common.Queries;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using servicedesk.Common.Types;
 
 namespace servicedesk.Services.Tickets.Controllers
 {
@@ -32,17 +34,15 @@ namespace servicedesk.Services.Tickets.Controllers
         public virtual async Task<IActionResult> Get(GetAll query)
         {
             var all = service.Query<T>(r => true);
-            var count = all.Count();
+            return await PagedResult(all, query);
 
-            var page = query.Page <= 0 ? 1 : query.Page; 
-            var resultsPerPage = query.Results <= 0 ? 100 : query.Results;
-            var skip = (page - 1) * resultsPerPage;
-
-            var data = await all.Skip(skip).Take(resultsPerPage).ToListAsync();
-
-            Response.Headers.Add("X-Total-Count", count.ToString());
-
-            return Ok(data);
+            //var count = all.Count();
+            //var page = query.Page <= 0 ? 1 : query.Page; 
+            //var resultsPerPage = query.Results <= 0 ? 100 : query.Results;
+            //var skip = (page - 1) * resultsPerPage;
+            //var data = await all.Skip(skip).Take(resultsPerPage).ToListAsync();
+            //Response.Headers.Add("X-Total-Count", count.ToString());
+            //return Ok(data);
         }
 
         [HttpGet]
@@ -88,6 +88,22 @@ namespace servicedesk.Services.Tickets.Controllers
             await service.DeleteAsync(query);
 
             return Ok();
+        }
+
+        [NonAction]
+        public async Task<ActionResult> PagedResult(IQueryable<T> data, IPagedQuery query)
+        {
+            var count = data.Count();
+
+            var page = query.Page <= 0 ? 1 : query.Page; 
+            var resultsPerPage = query.Results <= 0 ? 100 : query.Results;
+            var skip = (page - 1) * resultsPerPage;
+
+            var result = await data.Skip(skip).Take(resultsPerPage).ToListAsync();
+
+            Response.Headers.Add("X-Total-Count", count.ToString());
+
+            return Ok(result);
         }
     }
 
