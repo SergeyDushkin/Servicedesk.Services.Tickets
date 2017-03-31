@@ -66,6 +66,10 @@ namespace servicedesk.Services.Tickets.Framework
                 cfg.CreateMap<UnitUser, UnitUserDto>();
                 cfg.CreateMap<CreateUnitUser, UnitUser>();
                 cfg.CreateMap<UpdateUnitUser, UnitUser>();
+
+                cfg.CreateMap<Channel, ChannelDto>();
+                cfg.CreateMap<CreateChannel, Channel>();
+                cfg.CreateMap<UpdateChannel, Channel>();
             });
 
             return config.CreateMapper();

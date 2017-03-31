@@ -33,6 +33,24 @@ namespace servicedesk.Services.Tickets.Framework
                 await context.Suppliers.AddAsync(supplier);
                 await context.SaveChangesAsync();
             }
+
+            if (!context.Channels.Any(r => r.Code == "email"))
+            {
+                await context.Channels.AddAsync(new Channel { Code = "email", Name = "Электронная почта" });
+                await context.SaveChangesAsync();
+            }
+
+            if (!context.Channels.Any(r => r.Code == "phone"))
+            {
+                await context.Channels.AddAsync(new Channel { Code = "phone", Name = "Горячая линия" });
+                await context.SaveChangesAsync();
+            }
+
+            if (!context.Channels.Any(r => r.Code == "web"))
+            {
+                await context.Channels.AddAsync(new Channel { Code = "web", Name = "Web интерфейс" });
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

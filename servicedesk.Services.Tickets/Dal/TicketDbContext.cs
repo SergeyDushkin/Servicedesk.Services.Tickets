@@ -96,6 +96,11 @@ namespace servicedesk.Services.Tickets.Dal
             modelBuilder.Entity<UnitUser>().Property(r => r.CreatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAdd();
             modelBuilder.Entity<UnitUser>().Property(r => r.UpdatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAddOrUpdate();
 
+            modelBuilder.Entity<Channel>().Property(p => p.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Channel>().HasKey(r => r.Id);
+            modelBuilder.Entity<Channel>().Property(r => r.CreatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Channel>().Property(r => r.UpdatedAt).HasDefaultValueSql("now()").ValueGeneratedOnAddOrUpdate();
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -115,5 +120,6 @@ namespace servicedesk.Services.Tickets.Dal
         public DbSet<ContractService> ContractServices { get; set; }
         public DbSet<UnitService> UnitServices { get; set; }
         public DbSet<UnitUser> UnitUsers { get; set; }
+        public DbSet<Channel> Channels { get; set; }
     }
 }
