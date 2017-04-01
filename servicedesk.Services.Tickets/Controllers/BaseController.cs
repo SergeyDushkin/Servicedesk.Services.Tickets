@@ -8,6 +8,10 @@ using servicedesk.Common.Domain;
 using servicedesk.Common.Services;
 using servicedesk.Common.Queries;
 using Microsoft.EntityFrameworkCore;
+using servicedesk.Services.Tickets.Queries;
+using System.Linq.Expressions;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace servicedesk.Services.Tickets.Controllers
 {
@@ -29,9 +33,9 @@ namespace servicedesk.Services.Tickets.Controllers
         }
 
         [HttpGet]
-        public virtual async Task<IActionResult> Get(GetAll query)
+        public virtual async Task<IActionResult> Get(Queries.GetAll query)
         {
-            var all = service.Query<T>(r => true);
+            var all = service.Query<T>(r => true, GenericExtension.StringToProperties<T>(query.Include).ToArray());
             return await PagedResult(all, query);
         }
 
@@ -115,9 +119,9 @@ namespace servicedesk.Services.Tickets.Controllers
         }
 
         [HttpGet]
-        public virtual async Task<IActionResult> Get(GetByReferenceId query)
+        public virtual async Task<IActionResult> Get(Queries.GetByReferenceId query)
         {
-            var all = service.Query<T>(r => r.ReferenceId == query.ReferenceId);
+            var all = service.Query<T>(r => r.ReferenceId == query.ReferenceId, GenericExtension.StringToProperties<T>(query.Include).ToArray());
             var count = all.Count();
 
             var page = query.Page <= 0 ? 1 : query.Page; 
@@ -174,6 +178,62 @@ namespace servicedesk.Services.Tickets.Controllers
             await service.DeleteAsync(query);
 
             return Ok();
+        }
+    }
+
+    static class GenericExtension
+    {
+        public static IEnumerable<Expression<Func<T, object>>> StringToProperties<T>(string str)
+        {
+            if (String.IsNullOrWhiteSpace(str))
+                yield break;
+
+            var array = str.ToLower().Split(',');
+
+            var props = GenericExtension.IterateProps(typeof(T)).ToArray();
+
+            foreach (var a in array)
+            {
+                var p = props.Where(r => r.ToLower() == a).SingleOrDefault();
+
+                if (p != null)
+                {
+                    ParameterExpression parameter = Expression.Parameter(typeof(T), "i");
+                    MemberExpression property = Expression.Property(parameter, p);
+
+                    var delegateType = typeof(Func<T, object>);
+                    dynamic lambda = Expression.Lambda(delegateType, property, parameter);
+
+                    yield return lambda;
+                }
+            }
+        }
+
+        public static IEnumerable<string> IterateProps(Type baseType)
+        {
+            return IteratePropsInner(baseType, baseType.Name);
+        }
+
+        private static IEnumerable<string> IteratePropsInner(Type baseType, string baseName)
+        {
+            var props = baseType.GetProperties();
+
+            foreach (var property in props)
+            {
+                var name = property.Name;
+                var type = property.PropertyType;
+
+                if (type.FullName.StartsWith("System"))
+                    continue;
+
+                if (type.GetTypeInfo().IsClass)
+                {
+                    foreach (var info in IteratePropsInner(type, name))
+                        yield return string.Format("{0}.{1}", baseName, info);
+
+                    yield return property.Name;
+                }
+            }
         }
     }
 }
