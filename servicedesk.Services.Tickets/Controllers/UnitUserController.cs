@@ -20,7 +20,7 @@ namespace servicedesk.Services.Tickets.Controllers
         [Route("users")]
         public async Task<IActionResult> GetUsersByUnitId(BrowseUnitUsers query)
         {
-            var data = service.Query<UnitUser>(r => r.UnitId == query.UnitId, r => r.User).Select(r => r.User);
+            var data = service.Query<UnitUser>(r => r.UnitId == query.UnitId, r => r.User);
             return await PagedResult(data, query);
         }
     }
