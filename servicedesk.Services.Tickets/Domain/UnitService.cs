@@ -26,4 +26,27 @@ namespace servicedesk.Services.Tickets.Domain
             this.Id = id;
         }
     }
+
+    public class UnitServiceDto
+    {
+        public Guid Id { get; set; }
+        public Guid UnitId { get; set; }
+        public Guid ServiceId { get; set; }
+
+        public BusinessUnit Unit { get; set; }
+        public Service Service { get; set; }
+    }
+
+    public class CreateUnitService
+    {
+        public Guid UnitId { get; set; }
+        public Guid ServiceId { get; set; }
+    }
+
+    public class UpdateUnitService
+    {
+        public Guid Id { get; set; }
+        public Guid UnitId { get; set; }
+        public Guid ServiceId { get; set; }
+    }
 }

@@ -8,7 +8,7 @@ using servicedesk.Services.Tickets.Shared.Dto;
 namespace servicedesk.Services.Tickets.Controllers
 {
     [Route("unit-service")]
-    public class UnitServiceController : BaseController<UnitService, UnitService, CreateBusinessUnit, UpdateBusinessUnit>
+    public class UnitServiceController : BaseController<UnitService, UnitServiceDto, CreateUnitService, UpdateUnitService>
     {
         public UnitServiceController(IBaseService service, ILoggerFactory loggerFactory, AutoMapper.IMapper mapper) : base(service, loggerFactory, mapper)
         {
