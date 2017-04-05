@@ -15,9 +15,9 @@ namespace servicedesk.Services.Tickets.Controllers
         }
         
         [HttpGet]
-        [Route("service")]
-        public IActionResult GetServiceByUnitId(GetServiceByUnitId query) => service
-            .Query<UnitService>(r => r.UnitId == query.UnitId, r => r.Service)
+        [Route("unit")]
+        public IActionResult GetUnitByServiceId(GetUnitByServiceId query) => service
+            .Query<UnitService>(r => r.ServiceId == query.ServiceId, r => r.Unit)
             .SingleOrDefault()
             .PipeTo(OkOrNotFound);
     }
