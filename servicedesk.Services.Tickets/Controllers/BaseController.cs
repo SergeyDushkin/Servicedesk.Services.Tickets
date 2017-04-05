@@ -99,6 +99,22 @@ namespace servicedesk.Services.Tickets.Controllers
             
             return Ok(result);
         }
+
+        [NonAction]
+        public ActionResult OkOrNotFound(object value)
+        {
+            if (value == null) 
+            {
+                return NotFound();
+            }
+            
+            return Ok(value);
+        }
+    }
+
+    public static class ControllerExtension 
+    {
+        public static TResult PipeTo<TSource, TResult>(this TSource source, Func<TSource, TResult> func) => func(source);
     }
 
     public class BaseCrudController<T, TDto, TCreate, TUpdate> : Controller
