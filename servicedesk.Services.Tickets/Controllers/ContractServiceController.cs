@@ -12,5 +12,12 @@ namespace servicedesk.Services.Tickets.Controllers
         public ContractServiceController(IBaseService service, ILoggerFactory loggerFactory, AutoMapper.IMapper mapper) : base(service, loggerFactory, mapper)
         {
         }
+        
+        [HttpGet]
+        [Route("contract")]
+        public IActionResult GetContractByServiceId(GetContractByServiceId query) => service
+            .Query<ContractService>(r => r.ServiceId == query.ServiceId, r => r.Contract)
+            .SingleOrDefault()
+            .PipeTo(OkOrNotFound);
     }
 }
