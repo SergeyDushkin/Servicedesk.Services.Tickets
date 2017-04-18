@@ -36,7 +36,8 @@ namespace servicedesk.Services.Tickets.Framework
                 cfg.CreateMap<UpdateSupplier, Supplier>();
 
                 cfg.CreateMap<Ticket, TicketDto>();
-
+                cfg.CreateMap<CreateTicket, Ticket>();
+                
                 cfg.CreateMap<TicketPriority, TicketPriorityDto>();
                 cfg.CreateMap<CreateTicketPriority, TicketPriority>();
                 cfg.CreateMap<UpdateTicketPriority, TicketPriority>();
